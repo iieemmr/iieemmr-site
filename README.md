@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 12th MMRC Recap Site
+
+A post-conference recap page for the **12th IIEE Metro Manila Regional Conference** (Brighter 2026), built for the Institute of Integrated Electrical Engineers of the Philippines, Metro Manila Region. Thanks delegates, chapters, and partners, and recaps the event's speakers, sponsors, and highlights.
+
+Live at [iieemmr-site.vercel.app](https://iieemmr-site.vercel.app). Built with Next.js (App Router), TypeScript, and Tailwind CSS.
+
+## Sections
+
+The page (`app/page.tsx`) renders six sections in order, one component each under `components/`:
+
+1. **HeroRecap** — headline, thank-you subheadline, event dates/venue, and a "Watch Highlights" CTA
+2. **EventDetails** — exhibitor stats, opening program speakers, closing ceremony chapter roll call, and hosts
+3. **VideoHighlight** — embeds the conference highlight reel
+4. **SponsorThankYou** — sponsor/partner logo grid and special acknowledgments
+5. **MMRHistoryVideo** — embeds the "IIEE MMR Through The Lens of Time" video
+6. **PhotoGallery** — lightbox photo grid
+
+Shared, reusable pieces live in `components/shared/`: `VideoEmbed` (renders a placeholder until a real video URL is supplied), `PlaceholderBox` (generic labeled placeholder for logos/photos), `LogoGrid`, and `PhotoLightbox`.
+
+## Swapping in real content
+
+Nothing is hardcoded into the components — all copy-adjacent data lives in `data/*.ts`:
+
+- `data/eventDetails.ts` — opening speakers, closing chapter reps, hosts, exhibitor stat
+- `data/sponsors.ts` — sponsor/partner list; set `logoSrc` to a real image path once logos are sourced
+- `data/videos.ts` — the two video entries; set `videoUrl` to a YouTube link or direct video file once available
+- `data/gallery.ts` — 16 photo slots; set `src` on each entry once real event photos are sourced
+
+Until real assets are set, every video, logo, and photo renders as a clearly labeled placeholder instead of a broken link.
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the site. Edit `app/page.tsx` or any component under `components/` — the page hot-reloads.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deployment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Linked to Vercel as `paulfuentesss-dev/iieemmr-site`. Deploy a preview with:
 
-## Learn More
+```bash
+npx vercel deploy
+```
 
-To learn more about Next.js, take a look at the following resources:
+or push to a branch and deploy via `vercel --prod` once GitHub auto-deploys are connected.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Git workflow
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Work happens on branches off `main` (e.g. `feat/photo-gallery-real-images`) and merges via pull request — no direct pushes to `main`.
 
-## Deploy on Vercel
+Commits follow [Conventional Commits](https://www.conventionalcommits.org/) and are enforced by commitlint on every commit (`.husky/commit-msg`):
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+<type>(optional scope): <short summary>
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+<optional body explaining why>
+```
+
+Common types:
+
+| Type       | Use for                                              |
+| ---------- | ----------------------------------------------------- |
+| `feat`     | a new feature or section                               |
+| `fix`      | a bug fix                                              |
+| `docs`     | documentation only (README, comments)                  |
+| `style`    | formatting only, no code behavior change               |
+| `refactor` | code change that neither fixes a bug nor adds a feature |
+| `perf`     | a performance improvement                              |
+| `test`     | adding or fixing tests                                 |
+| `build`    | build system or dependency changes                     |
+| `ci`       | CI/CD configuration changes                            |
+| `chore`    | tooling, config, or maintenance with no source impact   |
+
+Example: `feat(gallery): wire up real event photos from data/gallery.ts`
+
+`.husky/pre-commit` also runs ESLint on `app`, `components`, and `data` before every commit.
