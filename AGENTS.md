@@ -18,13 +18,17 @@ Before raising a PR, check whether `README.md` needs updating for the changes in
 
 Don't run type-check/lint after every individual edit — it slows down iteration. Run it after finishing a logical chunk of work (a component, a feature) instead, and always as part of the pre-PR pass below.
 
+Automate the routine steps below freely, but stay defensive at the two points where work actually gets lost or duplicated: run `git status` before switching or creating branches — stash or cherry-pick anything uncommitted/unmerged rather than leaving it stranded — and always check `gh pr list --head <branch>` (queries GitHub directly, so it's reliable even across sessions/clones) before creating a PR, so we never open a second PR for work already in flight.
+
 When asked to raise a PR, run through these steps in order rather than jumping straight to `gh pr create`:
 
-1. Check if a PR already exists for the current branch (`gh pr list --head <branch>`) — don't open a duplicate.
-2. Check if the current branch is stale or already merged (`git branch --merged main`, or the branch is behind `main` and unrelated to the requested change). If so, pull `main` and cut a fresh branch off it per the convention above — don't reuse it.
+1. Check if a PR already exists for the current branch (`gh pr list --head <branch>`).
+   - If an open PR already exists: skip directly to type-check → README check → commit → push (below). Don't create a new branch, and don't run `gh pr create` — pushing to the branch updates the existing PR automatically.
+   - If no PR exists: continue to the next step.
+2. Check if the current branch is stale or already merged (`git branch --merged main`, or the branch is behind `main` and unrelated to the requested change). If so, pull `main` and cut a fresh branch off it per the convention above — don't reuse it. If the stale branch already has commits for the current task, cherry-pick them onto the new branch first; don't leave them stranded.
 3. Type-check and lint (`npx tsc --noEmit`, `npm run lint`) and fix anything that surfaces.
 4. Check whether `README.md` needs updating for this diff.
-5. Stage all the relevant changes and make **one commit** for the PR (not a separate commit per file/change) — a message describing the why, not just the what. Don't split into multiple `git commit` calls; that means multiple permission prompts for one logical unit of work.
+5. Stage all the relevant changes and make **one commit for this round of changes** (not a separate commit per file/change) — a message describing the why, not just the what. Don't split into multiple `git commit` calls; that means multiple permission prompts for one logical unit of work. If pushing to an already-open PR, this is a new commit added on top — never amend or squash commits already pushed to the PR.
 6. Push the branch (`git push -u origin <branch>`).
 7. Create the PR with `gh pr create`, with a summary and test plan.
 
@@ -37,7 +41,7 @@ Content and layout come first. Once section copy, dates, and photos are final, w
 - [ ] JSON-LD `Event` structured data (dates, location, organizer) — depends on final event details
 - [ ] Branded favicon + OG image (replace default `next.svg`/`vercel.svg`/etc. in `public/`)
 - [x] Custom `app/not-found.tsx` + `app/error.tsx` (branded 404/error, auto-wrapped in `SiteNav`/`SiteFooter` via root layout)
-- [ ] Final content/animation pass (fade-ins, scroll effects — see project memory)
+- [ ] Final content/animation pass (fade-ins, scroll effects)
 
 Already done: `app/robots.ts`, `app/sitemap.ts`, `metadataBase` in `app/layout.tsx`.
 

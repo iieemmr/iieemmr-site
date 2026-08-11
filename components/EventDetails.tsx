@@ -28,14 +28,14 @@ export default function EventDetails() {
           <h3 className="font-heading text-xl font-semibold text-navy-950 sm:text-2xl">
             Opening Program
           </h3>
-          <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+          <ul className="grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4">
             {openingSpeakers.map((speaker) => (
               <li
                 key={speaker.name}
-                className="flex flex-col gap-3 rounded-lg border border-slate-200 p-4"
+                className="flex flex-row items-center gap-4 rounded-lg border border-slate-200 p-3 sm:flex-col sm:items-stretch sm:gap-3 sm:p-4"
               >
                 {speaker.photoSrc ? (
-                  <div className="relative aspect-[3/4] w-full overflow-hidden rounded-md">
+                  <div className="relative aspect-square w-24 shrink-0 overflow-hidden rounded-md sm:aspect-[3/4] sm:w-full">
                     <Image
                       src={speaker.photoSrc}
                       alt={speaker.name}
@@ -47,7 +47,7 @@ export default function EventDetails() {
                   <div
                     role="img"
                     aria-label={`${speaker.name} — photo placeholder`}
-                    className="flex aspect-[3/4] w-full items-center justify-center rounded-md border border-dashed border-slate-300 bg-slate-100 p-2 text-center text-xs font-medium text-slate-500"
+                    className="flex aspect-square w-24 shrink-0 items-center justify-center rounded-md border border-dashed border-slate-300 bg-slate-100 p-2 text-center text-xs font-medium leading-tight text-slate-500 sm:aspect-[3/4] sm:w-full"
                   >
                     Photo placeholder
                   </div>
@@ -69,14 +69,34 @@ export default function EventDetails() {
           <h3 className="font-heading text-xl font-semibold text-navy-950 sm:text-2xl">
             Closing Ceremony — All 6 Chapters
           </h3>
-          <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
+          <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 md:grid-cols-3">
             {closingChapters.map((chapter) => (
               <li
                 key={chapter.chapter}
-                className="rounded-lg border border-slate-200 px-4 py-3"
+                className="flex flex-row items-center gap-4 rounded-lg border border-slate-200 p-3 sm:flex-col sm:items-stretch sm:gap-3 sm:p-4"
               >
-                <p className="font-medium text-navy-950">{chapter.chapter}</p>
-                <p className="text-sm text-slate-600">{chapter.rep}</p>
+                {chapter.photoSrc ? (
+                  <div className="relative aspect-square w-24 shrink-0 overflow-hidden rounded-md sm:aspect-[3/4] sm:w-full">
+                    <Image
+                      src={chapter.photoSrc}
+                      alt={chapter.rep}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                ) : (
+                  <div
+                    role="img"
+                    aria-label={`${chapter.rep} — photo placeholder`}
+                    className="flex aspect-square w-24 shrink-0 items-center justify-center rounded-md border border-dashed border-slate-300 bg-slate-100 p-2 text-center text-xs font-medium leading-tight text-slate-500 sm:aspect-[3/4] sm:w-full"
+                  >
+                    Photo placeholder
+                  </div>
+                )}
+                <div>
+                  <p className="font-medium text-navy-950">{chapter.chapter}</p>
+                  <p className="text-sm text-slate-600">{chapter.rep}</p>
+                </div>
               </li>
             ))}
           </ul>
@@ -86,14 +106,34 @@ export default function EventDetails() {
           <h3 className="font-heading text-xl font-semibold text-navy-950 sm:text-2xl">
             Conference Hosts
           </h3>
-          <ul className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+          <ul className="grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4">
             {hosts.map((host) => (
               <li
                 key={host.name}
-                className="rounded-lg border border-slate-200 px-4 py-3"
+                className="flex flex-row items-center gap-4 rounded-lg border border-slate-200 p-3 sm:flex-col sm:items-stretch sm:gap-3 sm:p-4"
               >
-                <p className="font-medium text-navy-950">{host.name}</p>
-                <p className="text-sm text-slate-600">{host.role}</p>
+                {host.photoSrc ? (
+                  <div className="relative aspect-square w-24 shrink-0 overflow-hidden rounded-md sm:aspect-[3/4] sm:w-full">
+                    <Image
+                      src={host.photoSrc}
+                      alt={host.name}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                ) : (
+                  <div
+                    role="img"
+                    aria-label={`${host.name} — photo placeholder`}
+                    className="flex aspect-square w-24 shrink-0 items-center justify-center rounded-md border border-dashed border-slate-300 bg-slate-100 p-2 text-center text-xs font-medium leading-tight text-slate-500 sm:aspect-[3/4] sm:w-full"
+                  >
+                    Photo placeholder
+                  </div>
+                )}
+                <div>
+                  <p className="font-medium text-navy-950">{host.name}</p>
+                  <p className="text-sm text-slate-600">{host.role}</p>
+                </div>
               </li>
             ))}
           </ul>

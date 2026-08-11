@@ -34,7 +34,7 @@ export default function HeroRecap() {
 
         <a
           href="#video-highlights"
-          className="mt-4 inline-flex w-full items-center justify-center rounded-full bg-brand-gold px-8 py-3 text-base font-semibold text-navy-950 transition hover:bg-white sm:w-auto"
+          className="mt-4 inline-flex items-center justify-center rounded-full bg-brand-gold px-8 py-3 text-base font-semibold text-navy-950 transition hover:bg-white"
         >
           Watch Highlights
         </a>
