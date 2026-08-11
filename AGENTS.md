@@ -7,3 +7,56 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+# Git workflow
+
+This repo auto-deletes branches on merge — one branch per PR is the convention. Before starting new work, pull `main` and cut a fresh branch off it rather than reusing an old (already-merged) branch name.
+
+Before raising a PR, check whether `README.md` needs updating for the changes in the diff (new scripts, setup steps, env vars, structure changes, etc.).
+
+## "Help me raise a PR for this"
+
+Don't run type-check/lint after every individual edit — it slows down iteration. Run it after finishing a logical chunk of work (a component, a feature) instead, and always as part of the pre-PR pass below.
+
+Automate the routine steps below freely, but stay defensive at the two points where work actually gets lost or duplicated: run `git status` before switching or creating branches — stash or cherry-pick anything uncommitted/unmerged rather than leaving it stranded — and always check `gh pr list --head <branch>` (queries GitHub directly, so it's reliable even across sessions/clones) before creating a PR, so we never open a second PR for work already in flight.
+
+When asked to raise a PR, run through these steps in order rather than jumping straight to `gh pr create`:
+
+1. Check if a PR already exists for the current branch (`gh pr list --head <branch>`).
+   - If an open PR already exists: skip directly to type-check → README check → commit → push (below). Don't create a new branch, and don't run `gh pr create` — pushing to the branch updates the existing PR automatically.
+   - If no PR exists: continue to the next step.
+2. Check if the current branch is stale or already merged (`git branch --merged main`, or the branch is behind `main` and unrelated to the requested change). If so, pull `main` and cut a fresh branch off it per the convention above — don't reuse it. If the stale branch already has commits for the current task, cherry-pick them onto the new branch first; don't leave them stranded.
+3. Type-check and lint (`npx tsc --noEmit`, `npm run lint`) and fix anything that surfaces.
+4. Check whether `README.md` needs updating for this diff.
+5. Stage all the relevant changes and make **one commit for this round of changes** (not a separate commit per file/change) — a message describing the why, not just the what. Don't split into multiple `git commit` calls; that means multiple permission prompts for one logical unit of work. If pushing to an already-open PR, this is a new commit added on top — never amend or squash commits already pushed to the PR.
+6. Push the branch (`git push -u origin <branch>`).
+7. Create the PR with `gh pr create`, with a summary and test plan.
+
+# Pre-launch checklist
+
+Content and layout come first. Once section copy, dates, and photos are final, work through this before shipping to prod:
+
+- [ ] Open Graph + Twitter card metadata (title, description, image) — depends on final hero copy
+- [ ] Canonical URL in metadata
+- [ ] JSON-LD `Event` structured data (dates, location, organizer) — depends on final event details
+- [ ] Branded favicon + OG image (replace default `next.svg`/`vercel.svg`/etc. in `public/`)
+- [x] Custom `app/not-found.tsx` + `app/error.tsx` (branded 404/error, auto-wrapped in `SiteNav`/`SiteFooter` via root layout)
+- [ ] Final content/animation pass (fade-ins, scroll effects)
+
+Already done: `app/robots.ts`, `app/sitemap.ts`, `metadataBase` in `app/layout.tsx`.
+
+# Production cutover (do this once content is final)
+
+Client contact: iieemmrgovernor@gmail.com
+
+- [x] Invite iieemmrgovernor@gmail.com to the `iieemmr` GitHub org (github.com/orgs/iieemmr/people) — needs an org owner to do it
+- [ ] Decide if the client needs direct Vercel access — project currently lives under a personal Hobby account (`paulfuentesss-dev`), which can't add members. Two options: (a) create/move to a Team and invite the client as a member (likely a paid seat, confirm current pricing), or (b) transfer the project directly to the client's own Vercel account so they own it outright — the cleaner long-term handover, since it's their site
+- [ ] Confirm Vercel plan is appropriate once real usage is known — Hobby is intended for personal/non-commercial use per Vercel's terms; if IIEE MMR's traffic or org use counts as commercial, Pro may be the correct (not just higher-traffic) plan regardless of whether Hobby's usage limits are actually hit
+- [ ] Confirm who controls DNS for the Wix account behind `iieemmr.com` (client's real domain, currently Wix-hosted)
+- [ ] Add `iieemmr.com` + `www.iieemmr.com` in Vercel project → Settings → Domains, get the required A/CNAME records
+- [ ] Update those records in Wix DNS — do **not** touch MX/TXT records if the client has `@iieemmr.com` email
+- [ ] Pick a low-traffic cutover window; old Wix site goes down at that domain the moment DNS updates
+- [ ] Decide whether old Wix subpages (About/Events/Contact) need 301 redirects into the new single-page site, or if losing that SEO is acceptable
+- [ ] After cutover: client can downgrade/cancel Wix *hosting*, but keep domain registration/DNS wherever it lives
+
+Costs: domain renewal stays with the client (already paying via Wix); Vercel Hobby hosting is free and sufficient for this site's traffic; GitHub is free (public repo); a Vercel Team seat is the only new cost, and only if the client wants their own login.

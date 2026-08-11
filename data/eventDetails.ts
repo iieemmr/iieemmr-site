@@ -40,26 +40,28 @@ export const openingSpeakers: OpeningSpeaker[] = [
 export type ChapterRep = {
   chapter: string;
   rep: string;
+  photoSrc: string | null;
 };
 
 export const closingChapters: ChapterRep[] = [
-  { chapter: "MMR Central", rep: "Engr. Bottany KC Briones" },
-  { chapter: "MMR North", rep: "Engr. Maine Macalipay" },
-  { chapter: "MMR South", rep: "Engr. Jeffrey Santos" },
-  { chapter: "MMR East", rep: "Engr. Jimmuel Villaoz" },
-  { chapter: "MMR West", rep: "Engr. Julie Yu" },
-  { chapter: "MMR Singapore", rep: "Engr. Jenalyn Dizon" },
+  { chapter: "MMR Central", rep: "Engr. Bottany KC Briones", photoSrc: null },
+  { chapter: "MMR North", rep: "Engr. Maine Macalipay", photoSrc: null },
+  { chapter: "MMR South", rep: "Engr. Jeffrey Santos", photoSrc: null },
+  { chapter: "MMR East", rep: "Engr. Jimmuel Villaoz", photoSrc: null },
+  { chapter: "MMR West", rep: "Engr. Julie Yu", photoSrc: null },
+  { chapter: "MMR Singapore", rep: "Engr. Jenalyn Dizon", photoSrc: null },
 ];
 
 export type Host = {
   name: string;
   role: string;
+  photoSrc: string | null;
 };
 
 export const hosts: Host[] = [
-  { name: "Mr. Arkel Mendoza", role: "GMA Host" },
-  { name: "Engr. Paula Badong-Florendo", role: "MSC" },
-  { name: "Engr. Emman Allada", role: "MCC" },
+  { name: "Mr. Arkel Mendoza", role: "GMA Host", photoSrc: null },
+  { name: "Engr. Paula Badong-Florendo", role: "MSC", photoSrc: null },
+  { name: "Engr. Emman Allada", role: "MCC", photoSrc: null },
 ];
 
 export const exhibitorStat = {

@@ -11,14 +11,27 @@ export default function SponsorThankYou() {
 
         <LogoGrid sponsors={sponsors} />
 
-        <div className="flex flex-col gap-3 border-t border-slate-200 pt-8">
-          <p className="text-sm font-medium uppercase tracking-widest text-slate-400">
-            Special Acknowledgment
-          </p>
+        <div className="mt-4 flex flex-col items-center gap-4 rounded-2xl border border-brand-gold/30 bg-gradient-to-b from-brand-gold/10 via-brand-gold/5 to-transparent px-6 py-8 sm:px-10">
+          <div className="flex items-center gap-2 text-brand-gold">
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="h-4 w-4"
+            >
+              <path d="M12 1.5l2.9 6.26 6.85.72-5.16 4.68 1.47 6.79L12 16.6l-6.06 3.35 1.47-6.79-5.16-4.68 6.85-.72L12 1.5z" />
+            </svg>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em]">
+              Special Acknowledgment
+            </p>
+          </div>
           {acknowledgments.map((ack) => (
-            <p key={ack.name} className="text-sm text-slate-600 sm:text-base">
-              <span className="font-medium text-navy-950">{ack.name}</span>
-              {" — "}
+            <p key={ack.name} className="text-center text-sm text-slate-600 sm:text-base">
+              <span className="font-heading text-lg font-semibold text-navy-950 sm:text-xl">
+                {ack.name}
+              </span>
+              <br className="sm:hidden" />
+              <span className="hidden sm:inline">{" — "}</span>
               {ack.note}
             </p>
           ))}
