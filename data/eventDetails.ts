@@ -1,18 +1,40 @@
 export type OpeningSpeaker = {
   name: string;
   role: string;
+  photoSrc: string | null;
 };
 
 export const openingSpeakers: OpeningSpeaker[] = [
-  { name: "Engr. Danica D. Mendoza", role: "IIEE Mission/Vision" },
-  { name: "Engr. Botany KC S. Briones", role: "Delegates acknowledgment" },
+  {
+    name: "Engr. Danica D. Mendoza",
+    role: "IIEE Mission/Vision",
+    photoSrc: null,
+  },
+  {
+    name: "Engr. Botany KC S. Briones",
+    role: "Delegates acknowledgment",
+    photoSrc: null,
+  },
   {
     name: "Engr. Juan Paolo M. Tolentino",
     role: "Official Opening Declaration",
+    photoSrc: null,
   },
-  { name: "Hon. Mario C. Marasagan", role: "Guest of Honor message" },
-  { name: "Hon. Adelino V. Garcia Jr.", role: "PRBEE Roadmap" },
-  { name: "Engr. Froilan J. Savet", role: "Keynote message" },
+  {
+    name: "Hon. Mario C. Marasagan",
+    role: "Guest of Honor message",
+    photoSrc: null,
+  },
+  {
+    name: "Hon. Adelino V. Garcia Jr.",
+    role: "PRBEE Roadmap",
+    photoSrc: null,
+  },
+  {
+    name: "Engr. Froilan J. Savet",
+    role: "Keynote message",
+    photoSrc: null,
+  },
 ];
 
 export type ChapterRep = {

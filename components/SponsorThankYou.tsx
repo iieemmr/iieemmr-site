@@ -3,7 +3,7 @@ import { sponsors, acknowledgments } from "@/data/sponsors";
 
 export default function SponsorThankYou() {
   return (
-    <section className="bg-slate-50 px-6 py-20 sm:px-10">
+    <section id="sponsors" className="bg-slate-50 px-6 py-20 sm:px-10">
       <div className="mx-auto flex max-w-4xl flex-col gap-10 text-center">
         <h2 className="font-heading text-3xl font-bold text-navy-950 sm:text-4xl">
           Thank You, Sponsors &amp; Partners
