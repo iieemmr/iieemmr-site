@@ -7,7 +7,7 @@ import PhotoGallery from "@/components/PhotoGallery";
 
 export default function Home() {
   return (
-    <main>
+    <main id="main-content">
       <HeroRecap />
       <EventDetails />
       <VideoHighlight />
