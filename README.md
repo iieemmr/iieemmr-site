@@ -15,7 +15,9 @@ The page (`app/page.tsx`) renders six sections in order, one component each unde
 5. **MMRHistoryVideo** — embeds the "IIEE MMR Through The Lens of Time" video
 6. **PhotoGallery** — lightbox photo grid
 
-Shared, reusable pieces live in `components/shared/`: `VideoEmbed` (renders a placeholder until a real video URL is supplied), `PlaceholderBox` (generic labeled placeholder for logos/photos), `LogoGrid`, and `PhotoLightbox`.
+Shared, reusable pieces live in `components/shared/`: `VideoEmbed` (renders a placeholder until a real video URL is supplied), `PlaceholderBox` (generic labeled placeholder for logos/photos), `LogoGrid`, `PhotoLightbox`, and `ShareButton` (native share sheet with clipboard-copy fallback).
+
+`app/robots.ts`, `app/sitemap.ts`, `app/not-found.tsx`, and `app/error.tsx` provide the site's SEO and error-handling essentials; the latter two are branded and wrapped in `SiteNav`/`SiteFooter` automatically via the root layout.
 
 ## Swapping in real content
 
@@ -46,6 +48,8 @@ npx vercel deploy
 ```
 
 or push to a branch and deploy via `vercel --prod` once GitHub auto-deploys are connected.
+
+Page views are tracked with [Vercel Analytics](https://vercel.com/docs/analytics) (`@vercel/analytics`), wired into `app/layout.tsx`.
 
 ## Git workflow
 
