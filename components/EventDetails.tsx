@@ -1,3 +1,4 @@
+import Image from "next/image";
 import {
   openingSpeakers,
   closingChapters,
@@ -7,7 +8,7 @@ import {
 
 export default function EventDetails() {
   return (
-    <section className="bg-white px-6 py-20 sm:px-10">
+    <section id="event-details" className="bg-white px-6 py-20 sm:px-10">
       <div className="mx-auto flex max-w-4xl flex-col gap-14">
         <div className="flex flex-col items-center gap-3 text-center">
           <h2 className="font-heading text-3xl font-bold text-navy-950 sm:text-4xl">
@@ -27,14 +28,34 @@ export default function EventDetails() {
           <h3 className="font-heading text-xl font-semibold text-navy-950 sm:text-2xl">
             Opening Program
           </h3>
-          <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <ul className="grid grid-cols-2 gap-4 sm:grid-cols-3">
             {openingSpeakers.map((speaker) => (
               <li
                 key={speaker.name}
-                className="rounded-lg border border-slate-200 px-4 py-3"
+                className="flex flex-col gap-3 rounded-lg border border-slate-200 p-4"
               >
-                <p className="font-medium text-navy-950">{speaker.name}</p>
-                <p className="text-sm text-slate-600">{speaker.role}</p>
+                {speaker.photoSrc ? (
+                  <div className="relative aspect-[3/4] w-full overflow-hidden rounded-md">
+                    <Image
+                      src={speaker.photoSrc}
+                      alt={speaker.name}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                ) : (
+                  <div
+                    role="img"
+                    aria-label={`${speaker.name} — photo placeholder`}
+                    className="flex aspect-[3/4] w-full items-center justify-center rounded-md border border-dashed border-slate-300 bg-slate-100 p-2 text-center text-xs font-medium text-slate-500"
+                  >
+                    Photo placeholder
+                  </div>
+                )}
+                <div>
+                  <p className="font-medium text-navy-950">{speaker.name}</p>
+                  <p className="text-sm text-slate-600">{speaker.role}</p>
+                </div>
               </li>
             ))}
           </ul>
