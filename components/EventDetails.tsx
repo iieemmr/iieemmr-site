@@ -14,8 +14,8 @@ export default function EventDetails() {
           <h2 className="font-heading text-3xl font-bold text-navy-950 sm:text-4xl">
             Event Recap Details
           </h2>
-          <div className="inline-flex flex-wrap items-baseline justify-center gap-x-2 rounded-xl bg-slate-50 px-6 py-4">
-            <span className="font-heading text-2xl font-extrabold text-brand-blue sm:text-3xl">
+          <div className="inline-flex flex-col items-center rounded-xl bg-slate-50 px-6 py-4">
+            <span className="font-heading text-3xl font-extrabold text-brand-blue">
               {exhibitorStat.value}
             </span>
             <span className="text-sm text-slate-600 sm:text-base">
