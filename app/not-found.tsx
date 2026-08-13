@@ -17,7 +17,7 @@ export default function NotFound() {
         href="/"
         className="mt-4 inline-flex items-center justify-center rounded-full bg-navy-950 px-8 py-3 text-base font-semibold text-white transition hover:bg-navy-900"
       >
-        Back to the recap
+        Back to the Recap
       </Link>
     </main>
   );
