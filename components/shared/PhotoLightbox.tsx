@@ -18,6 +18,8 @@ export default function PhotoLightbox({ photos }: PhotoLightboxProps) {
   const [expanded, setExpanded] = useState(false);
   const photoRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const pendingFocusIndex = useRef<number | null>(null);
+  const gridRef = useRef<HTMLDivElement | null>(null);
+  const toggleButtonRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
     if (expanded && pendingFocusIndex.current !== null) {
@@ -51,7 +53,7 @@ export default function PhotoLightbox({ photos }: PhotoLightboxProps) {
   const visiblePhotos = expanded
     ? photos
     : photos.slice(0, Math.min(DESKTOP_INITIAL_COUNT, photos.length));
-  const hasMore = !expanded && photos.length > MOBILE_INITIAL_COUNT;
+  const canToggle = photos.length > MOBILE_INITIAL_COUNT;
 
   function handleLoadMore() {
     const isDesktop = window.matchMedia(DESKTOP_BREAKPOINT_QUERY).matches;
@@ -61,10 +63,16 @@ export default function PhotoLightbox({ photos }: PhotoLightboxProps) {
     setExpanded(true);
   }
 
+  function handleShowLess() {
+    setExpanded(false);
+    gridRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    toggleButtonRef.current?.focus();
+  }
+
   return (
     <>
       <div>
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
+        <div ref={gridRef} className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
           {visiblePhotos.map((photo, index) => (
             <button
               key={photo.alt}
@@ -105,14 +113,15 @@ export default function PhotoLightbox({ photos }: PhotoLightboxProps) {
           ))}
         </div>
 
-        {hasMore ? (
+        {canToggle ? (
           <div className="mt-6 flex justify-center">
             <button
               type="button"
-              onClick={handleLoadMore}
+              ref={toggleButtonRef}
+              onClick={expanded ? handleShowLess : handleLoadMore}
               className="inline-flex items-center gap-2 rounded-full border border-navy-950/20 px-5 py-2 text-sm font-medium text-navy-950 transition hover:border-navy-950 hover:bg-navy-950 hover:text-white"
             >
-              Load more photos
+              {expanded ? "Show less" : "Load more photos"}
             </button>
           </div>
         ) : null}
