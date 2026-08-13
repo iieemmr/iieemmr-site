@@ -15,7 +15,7 @@ export default function SiteNav() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-navy-950/95 backdrop-blur">
-      <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-6 py-3 sm:px-10">
+      <div className="mx-auto flex min-h-16 max-w-5xl items-center justify-between gap-4 px-6 py-3 sm:px-10">
         <a
           href="#"
           className="shrink-0 font-heading text-sm font-semibold text-white sm:text-base"

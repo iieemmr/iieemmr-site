@@ -1,55 +1,54 @@
-export type OpeningSpeaker = {
+export type EventPerson = {
   name: string;
   role: string;
   photoSrc: string | null;
 };
 
-export const openingSpeakers: OpeningSpeaker[] = [
+export const keynoteSpeakers: EventPerson[] = [
   {
-    name: "Engr. Danica D. Mendoza",
-    role: "IIEE Mission/Vision",
+    name: "Engr. Ferdinand O. Geluz",
+    role: "SVP and Head, Meralco",
     photoSrc: null,
   },
-  {
-    name: "Engr. Botany KC S. Briones",
-    role: "Delegates acknowledgment",
-    photoSrc: null,
-  },
-  {
-    name: "Engr. Juan Paolo M. Tolentino",
-    role: "Official Opening Declaration",
-    photoSrc: null,
-  },
-  {
-    name: "Hon. Mario C. Marasagan",
-    role: "Guest of Honor message",
-    photoSrc: null,
-  },
-  {
-    name: "Hon. Adelino V. Garcia Jr.",
-    role: "PRBEE Roadmap",
-    photoSrc: null,
-  },
-  {
-    name: "Engr. Froilan J. Savet",
-    role: "Keynote message",
-    photoSrc: null,
-  },
+  { name: "Speaker 2", role: "Keynote Speaker", photoSrc: null },
+  { name: "Speaker 3", role: "Keynote Speaker", photoSrc: null },
+  { name: "Speaker 4", role: "Keynote Speaker", photoSrc: null },
 ];
 
-export type ChapterRep = {
-  chapter: string;
-  rep: string;
-  photoSrc: string | null;
-};
+export const day1Speakers: EventPerson[] = [
+  { name: "Speaker 1", role: "TBA", photoSrc: null },
+  { name: "Speaker 2", role: "TBA", photoSrc: null },
+  { name: "Speaker 3", role: "TBA", photoSrc: null },
+  { name: "Speaker 4", role: "TBA", photoSrc: null },
+  { name: "Speaker 5", role: "TBA", photoSrc: null },
+  { name: "Speaker 6", role: "TBA", photoSrc: null },
+];
 
-export const closingChapters: ChapterRep[] = [
-  { chapter: "MMR Central", rep: "Engr. Bottany KC Briones", photoSrc: null },
-  { chapter: "MMR North", rep: "Engr. Maine Macalipay", photoSrc: null },
-  { chapter: "MMR South", rep: "Engr. Jeffrey Santos", photoSrc: null },
-  { chapter: "MMR East", rep: "Engr. Jimmuel Villaoz", photoSrc: null },
-  { chapter: "MMR West", rep: "Engr. Julie Yu", photoSrc: null },
-  { chapter: "MMR Singapore", rep: "Engr. Jenalyn Dizon", photoSrc: null },
+export const day2Speakers: EventPerson[] = [
+  { name: "Speaker 1", role: "TBA", photoSrc: null },
+  { name: "Speaker 2", role: "TBA", photoSrc: null },
+  { name: "Speaker 3", role: "TBA", photoSrc: null },
+  { name: "Speaker 4", role: "TBA", photoSrc: null },
+  { name: "Speaker 5", role: "TBA", photoSrc: null },
+  { name: "Speaker 6", role: "TBA", photoSrc: null },
+];
+
+export const day3Speakers: EventPerson[] = [
+  { name: "Speaker 1", role: "TBA", photoSrc: null },
+  { name: "Speaker 2", role: "TBA", photoSrc: null },
+  { name: "Speaker 3", role: "TBA", photoSrc: null },
+  { name: "Speaker 4", role: "TBA", photoSrc: null },
+  { name: "Speaker 5", role: "TBA", photoSrc: null },
+  { name: "Speaker 6", role: "TBA", photoSrc: null },
+];
+
+export const day4Speakers: EventPerson[] = [
+  { name: "Speaker 1", role: "TBA", photoSrc: null },
+  { name: "Speaker 2", role: "TBA", photoSrc: null },
+  { name: "Speaker 3", role: "TBA", photoSrc: null },
+  { name: "Speaker 4", role: "TBA", photoSrc: null },
+  { name: "Speaker 5", role: "TBA", photoSrc: null },
+  { name: "Speaker 6", role: "TBA", photoSrc: null },
 ];
 
 export type Host = {

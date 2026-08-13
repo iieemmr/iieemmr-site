@@ -1,6 +1,6 @@
 export default function HeroRecap() {
   return (
-    <section className="relative flex min-h-[90vh] flex-col items-center justify-center overflow-hidden bg-navy-950 px-6 py-24 text-center sm:px-10">
+    <section className="relative flex min-h-[calc(100dvh-4rem)] flex-col items-center justify-center overflow-hidden bg-navy-950 px-6 py-24 text-center sm:px-10">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 bg-gradient-to-br from-navy-950 via-navy-900 to-navy-800"

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import PlaceholderBox from "@/components/shared/PlaceholderBox";
 import type { GalleryPhoto } from "@/data/gallery";
@@ -9,8 +9,22 @@ type PhotoLightboxProps = {
   photos: GalleryPhoto[];
 };
 
+const MOBILE_INITIAL_COUNT = 6;
+const DESKTOP_INITIAL_COUNT = 8;
+const DESKTOP_BREAKPOINT_QUERY = "(min-width: 768px)";
+
 export default function PhotoLightbox({ photos }: PhotoLightboxProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [expanded, setExpanded] = useState(false);
+  const photoRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const pendingFocusIndex = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (expanded && pendingFocusIndex.current !== null) {
+      photoRefs.current[pendingFocusIndex.current]?.focus();
+      pendingFocusIndex.current = null;
+    }
+  }, [expanded]);
 
   useEffect(() => {
     if (activeIndex === null) return;
@@ -34,34 +48,78 @@ export default function PhotoLightbox({ photos }: PhotoLightboxProps) {
   }, [activeIndex, photos.length]);
 
   const activePhoto = activeIndex !== null ? photos[activeIndex] : null;
+  const visiblePhotos = expanded
+    ? photos
+    : photos.slice(0, Math.min(DESKTOP_INITIAL_COUNT, photos.length));
+  const hasMore = !expanded && photos.length > MOBILE_INITIAL_COUNT;
+
+  function handleLoadMore() {
+    const isDesktop = window.matchMedia(DESKTOP_BREAKPOINT_QUERY).matches;
+    pendingFocusIndex.current = isDesktop
+      ? DESKTOP_INITIAL_COUNT
+      : MOBILE_INITIAL_COUNT;
+    setExpanded(true);
+  }
 
   return (
     <>
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
-        {photos.map((photo, index) => (
-          <button
-            key={photo.alt}
-            type="button"
-            onClick={() => setActiveIndex(index)}
-            className="group aspect-square overflow-hidden rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue"
-          >
-            {photo.src ? (
-              <div className="relative h-full w-full">
-                <Image
-                  src={photo.src}
-                  alt={photo.alt}
-                  fill
-                  className="object-cover transition group-hover:scale-105"
+      <div>
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
+          {visiblePhotos.map((photo, index) => (
+            <button
+              key={photo.alt}
+              type="button"
+              ref={(el) => {
+                photoRefs.current[index] = el;
+              }}
+              onClick={() => setActiveIndex(index)}
+              style={
+                expanded && index >= MOBILE_INITIAL_COUNT
+                  ? { animationDelay: `${(index - MOBILE_INITIAL_COUNT) * 40}ms` }
+                  : undefined
+              }
+              className={`group aspect-square overflow-hidden rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue ${
+                !expanded && index >= MOBILE_INITIAL_COUNT
+                  ? "hidden md:block"
+                  : expanded && index >= MOBILE_INITIAL_COUNT
+                    ? "animate-fade-in-up"
+                    : ""
+              }`}
+            >
+              {photo.src ? (
+                <div className="relative h-full w-full">
+                  <Image
+                    src={photo.src}
+                    alt={photo.alt}
+                    fill
+                    className="object-cover transition group-hover:scale-105"
+                  />
+                </div>
+              ) : (
+                <PlaceholderBox
+                  label={photo.alt}
+                  className="h-full w-full transition group-hover:border-brand-blue group-hover:text-brand-blue"
                 />
-              </div>
-            ) : (
-              <PlaceholderBox
-                label={photo.alt}
-                className="h-full w-full transition group-hover:border-brand-blue group-hover:text-brand-blue"
-              />
-            )}
-          </button>
-        ))}
+              )}
+            </button>
+          ))}
+        </div>
+
+        {hasMore ? (
+          <div className="mt-6 flex justify-center">
+            <button
+              type="button"
+              onClick={handleLoadMore}
+              className="inline-flex items-center gap-2 rounded-full border border-navy-950/20 px-5 py-2 text-sm font-medium text-navy-950 transition hover:border-navy-950 hover:bg-navy-950 hover:text-white"
+            >
+              Load more photos
+            </button>
+          </div>
+        ) : null}
+
+        <p className="sr-only" aria-live="polite">
+          {expanded ? `Showing all ${photos.length} photos` : ""}
+        </p>
       </div>
 
       {activePhoto ? (
