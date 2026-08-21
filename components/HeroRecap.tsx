@@ -9,7 +9,7 @@ export default function HeroRecap() {
         fill
         priority
         sizes="100vw"
-        className="object-cover object-center"
+        className="object-cover object-[62%_center] sm:object-[58%_center] lg:object-center"
       />
       <div
         aria-hidden="true"
