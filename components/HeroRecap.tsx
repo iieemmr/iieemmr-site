@@ -1,9 +1,19 @@
+import Image from "next/image";
+
 export default function HeroRecap() {
   return (
     <section className="relative flex min-h-[calc(100dvh-4rem)] flex-col items-center justify-center overflow-hidden bg-navy-950 px-6 py-24 text-center sm:px-10">
+      <Image
+        src="/photos/hero.jpg"
+        alt="Delegates and officers of the 12th Metro Manila Regional Conference celebrating together"
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-center"
+      />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-gradient-to-br from-navy-950 via-navy-900 to-navy-800"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-br from-navy-950 via-navy-900 to-navy-800 opacity-80"
       />
       <div
         aria-hidden="true"
@@ -41,8 +51,8 @@ export default function HeroRecap() {
       </div>
 
       <a
-        href="#event-details"
-        aria-label="Scroll to event details"
+        href="#before-after"
+        aria-label="Scroll to then and now section"
         className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-slate-300 transition hover:text-brand-gold"
       >
         <svg
