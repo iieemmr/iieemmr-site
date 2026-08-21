@@ -6,16 +6,17 @@ Live at [iieemmr-site.vercel.app](https://iieemmr-site.vercel.app). Built with N
 
 ## Sections
 
-The page (`app/page.tsx`) renders six sections in order, one component each under `components/`:
+The page (`app/page.tsx`) renders seven sections in order, one component each under `components/`:
 
 1. **HeroRecap** — headline, thank-you subheadline, event dates/venue, and a "Watch Highlights" CTA
-2. **EventDetails** — exhibitor stats, opening program speakers, closing ceremony chapter roll call, and hosts
-3. **VideoHighlight** — carousel of the conference's highlight reels
-4. **SponsorThankYou** — sponsor/partner logo grid and special acknowledgments
-5. **MMRHistoryVideo** — embeds the "IIEE MMR Through The Lens of Time" video
-6. **PhotoGallery** — lightbox photo grid
+2. **BeforeAfterHighlight** — "Then & Now" before/after image comparison slider
+3. **EventDetails** — exhibitor stats, opening program speakers, closing ceremony chapter roll call, and hosts
+4. **VideoHighlight** — carousel of the conference's highlight reels
+5. **SponsorThankYou** — sponsor/partner logo grid and special acknowledgments
+6. **MMRHistoryVideo** — embeds the "IIEE MMR Through The Lens of Time" video
+7. **PhotoGallery** — lightbox photo grid
 
-Shared, reusable pieces live in `components/shared/`: `VideoCarousel` (embla-carousel-powered slider over multiple `VideoEmbed`s, used by `VideoHighlight`), `VideoEmbed` (video player wrapper built on `VideoMedia` + `VideoControls`; renders a placeholder until a real video URL is supplied), `VideoMedia` (renders a YouTube iframe or `<video>` element depending on the URL), `VideoControls` (play/pause and fullscreen controls), `PlaceholderBox` (generic labeled placeholder for logos/photos), `LogoGrid`, `PhotoLightbox`, and `ShareButton` (native share sheet with clipboard-copy fallback).
+Shared, reusable pieces live in `components/shared/`: `BeforeAfterSlider` (compare-slider for the Then & Now section, dynamically imported client-side via `BeforeAfterSliderClient` with `ssr: false`), `VideoCarousel` (embla-carousel-powered slider over multiple `VideoEmbed`s, used by `VideoHighlight`), `VideoEmbed` (video player wrapper built on `VideoMedia` + `VideoControls`; renders a placeholder until a real video URL is supplied), `VideoMedia` (renders a YouTube iframe or `<video>` element depending on the URL), `VideoControls` (play/pause and fullscreen controls), `PlaceholderBox` (generic labeled placeholder for logos/photos), `LogoGrid`, `PhotoLightbox`, and `ShareButton` (native share sheet with clipboard-copy fallback).
 
 `app/robots.ts`, `app/sitemap.ts`, `app/not-found.tsx`, and `app/error.tsx` provide the site's SEO and error-handling essentials; the latter two are branded and wrapped in `SiteNav`/`SiteFooter` automatically via the root layout.
 
@@ -23,6 +24,7 @@ Shared, reusable pieces live in `components/shared/`: `VideoCarousel` (embla-car
 
 Nothing is hardcoded into the components — all copy-adjacent data lives in `data/*.ts`:
 
+- `data/beforeAfter.ts` — before/after image pair (`beforeSrc`/`afterSrc`) for the Then & Now slider
 - `data/eventDetails.ts` — opening speakers, closing chapter reps, hosts, exhibitor stat
 - `data/sponsors.ts` — sponsor/partner list; set `logoSrc` to a real image path once logos are sourced
 - `data/videos.ts` — `highlightReels` (array of video entries shown in the `VideoHighlight` carousel) and `historyVideo`; set each `videoUrl` to a YouTube link or direct video file once available (currently sample placeholders under `public/videos/`)
