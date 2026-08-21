@@ -15,8 +15,10 @@ export default function SiteNav() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeId, setActiveId] = useState<string | null>(null);
   const [indicator, setIndicator] = useState({ left: 0, width: 0, ready: false });
+  const [mobileIndicator, setMobileIndicator] = useState({ top: 0, height: 0, ready: false });
   const navRef = useRef<HTMLElement | null>(null);
   const linkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
+  const mobileLinkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
 
   useEffect(() => {
     const sections = navLinks
@@ -59,6 +61,19 @@ export default function SiteNav() {
     window.addEventListener("resize", updateIndicator);
     return () => window.removeEventListener("resize", updateIndicator);
   }, [activeId]);
+
+  useEffect(() => {
+    const activeLink = activeId ? mobileLinkRefs.current[activeId] : null;
+    if (!activeLink) {
+      setMobileIndicator((prev) => ({ ...prev, ready: false }));
+      return;
+    }
+    setMobileIndicator({
+      top: activeLink.offsetTop,
+      height: activeLink.offsetHeight,
+      ready: true,
+    });
+  }, [activeId, isOpen]);
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-navy-950/95 backdrop-blur">
@@ -131,11 +146,23 @@ export default function SiteNav() {
         <nav
           id="mobile-nav-menu"
           aria-label="Section navigation"
-          className="flex flex-col gap-1 border-t border-white/10 px-6 py-3 text-sm font-medium text-slate-300 sm:hidden"
+          className="relative flex flex-col gap-1 border-t border-white/10 px-6 py-3 text-sm font-medium text-slate-300 sm:hidden"
         >
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute left-0 w-0.5 rounded-full bg-brand-gold transition-all duration-300 ease-out"
+            style={{
+              top: mobileIndicator.top,
+              height: mobileIndicator.height,
+              opacity: mobileIndicator.ready ? 1 : 0,
+            }}
+          />
           {navLinks.map((link) => (
             <a
               key={link.href}
+              ref={(el) => {
+                mobileLinkRefs.current[link.href] = el;
+              }}
               href={link.href}
               onClick={() => setIsOpen(false)}
               aria-current={activeId === link.href ? "true" : undefined}
