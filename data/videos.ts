@@ -7,28 +7,31 @@ export type VideoEntry = {
 
 export const highlightReels: VideoEntry[] = [
   {
-    id: "highlight-opening",
-    title: "Opening Ceremony Highlights",
+    id: "highlight-recap",
+    title: "12th MMRC Highlights",
     caption:
       "To put the cherry on top. The 12th MMRC shares you the video highlights of the conference.",
-    // Local sample placeholder — swap for the real opening ceremony video.
-    videoUrl: "/videos/highlight-opening.mp4",
+    videoUrl: "https://www.youtube.com/watch?v=fvRf54-CG-M",
   },
   {
-    id: "highlight-sessions",
-    title: "Keynote & Technical Sessions",
+    id: "highlight-performance",
+    title: "IIEE Performance",
     caption:
-      "Relive the talks and technical sessions that made this year's conference one to remember.",
-    // Local sample placeholder — swap for the real sessions video.
-    videoUrl: "/videos/highlight-sessions.mp4",
+      "A performance segment from the 12th Metro Manila Regional Conference.",
+    videoUrl: "https://www.youtube.com/watch?v=IyVuQSpK-QQ",
   },
   {
-    id: "highlight-awards",
-    title: "Awards Night & Closing",
+    id: "highlight-invitation",
+    title: "You're Invited",
+    caption: "The official invitation to the 12th Metro Manila Regional Conference.",
+    videoUrl: "https://www.youtube.com/watch?v=oKTvSWw1fSw",
+  },
+  {
+    id: "highlight-golf",
+    title: "Golf Tournament",
     caption:
-      "A look back at the awards night and closing program of the 12th MMRC.",
-    // Local sample placeholder — swap for the real awards night video.
-    videoUrl: "/videos/highlight-awards.mp4",
+      "A look back at the 12th MMRC's golf tournament.",
+    videoUrl: "https://www.youtube.com/watch?v=ahZkV_MZ5cs",
   },
 ];
 
@@ -37,6 +40,5 @@ export const historyVideo: VideoEntry = {
   title: "IIEE MMR Through The Lens of Time",
   caption:
     "Take a 5-minute break and learn about the history of the IIEE Metro Manila Region.",
-  // YouTube sample placeholder — swap for the real history video.
-  videoUrl: "https://www.youtube.com/watch?v=Y-rmzh0PI3c",
+  videoUrl: "https://www.youtube.com/watch?v=_X0Pk4zDlAo",
 };
