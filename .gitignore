@@ -36,6 +36,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+# sponsor asset migration working files (not for public serving)
+/assets/incoming/
+Sponsor_Logo_Tracker.xlsx
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

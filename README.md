@@ -6,19 +6,22 @@ Live at [iieemmr-site.vercel.app](https://iieemmr-site.vercel.app). Built with N
 
 ## Sections
 
-The page (`app/page.tsx`) renders seven sections in order, one component each under `components/`:
+The homepage (`app/page.tsx`) renders six sections in order, one component each under `components/`:
 
 1. **HeroRecap** — headline, thank-you subheadline, event dates/venue, and a "Watch Highlights" CTA
 2. **BeforeAfterHighlight** — "Then & Now" before/after image comparison slider
 3. **EventDetails** — exhibitor stats, opening program speakers, closing ceremony chapter roll call, and hosts
 4. **VideoHighlight** — carousel of the conference's highlight reels
-5. **SponsorThankYou** — sponsor/partner logo grid and special acknowledgments
-6. **MMRHistoryVideo** — embeds the "IIEE MMR Through The Lens of Time" video
-7. **PhotoGallery** — lightbox photo grid
+5. **MMRHistoryVideo** — embeds the "IIEE MMR Through The Lens of Time" video
+6. **PhotoGallery** — lightbox photo grid
 
-Shared, reusable pieces live in `components/shared/`: `BeforeAfterSlider` (compare-slider for the Then & Now section, dynamically imported client-side via `BeforeAfterSliderClient` with `ssr: false`), `VideoCarousel` (embla-carousel-powered slider over multiple `VideoEmbed`s, used by `VideoHighlight`), `VideoEmbed` (video player wrapper built on `VideoMedia` + `VideoControls`; renders a placeholder until a real video URL is supplied), `VideoMedia` (renders a YouTube iframe or `<video>` element depending on the URL), `VideoControls` (play/pause and fullscreen controls), `PlaceholderBox` (generic labeled placeholder for logos/photos), `LogoGrid`, `PhotoLightbox`, and `ShareButton` (native share sheet with clipboard-copy fallback).
+**SponsorThankYou** lives on its own route, `app/sponsors/page.tsx`, rather than the homepage — it renders the full tier-grouped sponsor grid (Jade → Ruby → Diamond → Gold → Fellowship → Lunch → Others, in that client-confirmed prestige order, with a sticky in-page tier nav) plus the special acknowledgments block. Linked from `SiteNav` as "Sponsors".
+
+Shared, reusable pieces live in `components/shared/`: `BeforeAfterSlider` (compare-slider for the Then & Now section, dynamically imported client-side via `BeforeAfterSliderClient` with `ssr: false`), `VideoCarousel` (embla-carousel-powered slider over multiple `VideoEmbed`s, used by `VideoHighlight`), `VideoEmbed` (video player wrapper built on `VideoMedia`; renders a placeholder until a real video URL is supplied), `VideoMedia` (renders a YouTube iframe or `<video>` element depending on the URL, using each platform's native playback controls), `PlaceholderBox` (generic labeled placeholder for logos/photos), `LogoGrid`, `PhotoLightbox`, and `ShareButton` (native share sheet with clipboard-copy fallback).
 
 `app/robots.ts`, `app/sitemap.ts`, `app/not-found.tsx`, and `app/error.tsx` provide the site's SEO and error-handling essentials; the latter two are branded and wrapped in `SiteNav`/`SiteFooter` automatically via the root layout.
+
+`app/icon.png` and `app/apple-icon.png` are the browser tab icon and iOS home-screen icon (Next.js's file-convention icons — no code wiring needed). The full-resolution source logo lives at `public/brand/iiee-logo.png`, for any future branding use beyond the icons.
 
 ## Swapping in real content
 
@@ -26,8 +29,8 @@ Nothing is hardcoded into the components — all copy-adjacent data lives in `da
 
 - `data/beforeAfter.ts` — before/after image pair (`beforeSrc`/`afterSrc`) for the Then & Now slider
 - `data/eventDetails.ts` — opening speakers, closing chapter reps, hosts, exhibitor stat
-- `data/sponsors.ts` — sponsor/partner list; set `logoSrc` to a real image path once logos are sourced
-- `data/videos.ts` — `highlightReels` (array of video entries shown in the `VideoHighlight` carousel) and `historyVideo`; set each `videoUrl` to a YouTube link or direct video file once available (currently sample placeholders under `public/videos/`)
+- `data/sponsors.ts` — tiered sponsor roster (`TIER_ORDER`: Jade, Ruby, Diamond, Gold, Fellowship, Lunch, Others) with real logos already wired to `public/photos/sponsors/`, plus the special acknowledgments list
+- `data/videos.ts` — `highlightReels` (array of video entries shown in the `VideoHighlight` carousel) and `historyVideo`; `videoUrl` is a YouTube link or direct video file — real conference videos are wired in
 - `data/gallery.ts` — 16 photo slots; set `src` on each entry once real event photos are sourced
 
 Until real assets are set, every video, logo, and photo renders as a clearly labeled placeholder instead of a broken link.

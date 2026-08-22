@@ -7,10 +7,17 @@ export type EventPerson = {
 
 export const keynoteSpeakers: EventPerson[] = [
   {
-    name: "Engr. Froilan J. Savet",
-    role: "Senior Vice President and Head, Networks Meralco",
-    topic: "Message from the Keynote Speaker",
-    photoSrc: "/photos/speakers/froilan-savet.jpg",
+    name: "Hon. Mario C. Marasigan",
+    role: "Undersecretary, Department of Energy",
+    topic: "Message from the Guest of Honor",
+    photoSrc: "/photos/speakers/mario-marasigan.jpg",
+  },
+  {
+    name: "Engr. Adelino V. Garcia Jr., PEE",
+    role: "Chairman, Professional Regulatory Board of Electrical Engineering",
+    topic:
+      "PRBEE Roadmap and Role of Electrical Engineers in the Evolving Energy Industry",
+    photoSrc: "/photos/speakers/adelino-garcia.jpg",
   },
   {
     name: "Engr. Ferdinand O. Geluz",
@@ -18,8 +25,12 @@ export const keynoteSpeakers: EventPerson[] = [
     topic: "Message from the Keynote Speaker",
     photoSrc: "/photos/speakers/ferdinand-geluz.png",
   },
-  { name: "Speaker 3", role: "Keynote Speaker", photoSrc: null },
-  { name: "Speaker 4", role: "Keynote Speaker", photoSrc: null },
+  {
+    name: "Engr. Froilan J. Savet",
+    role: "Senior Vice President and Head, Networks Meralco",
+    topic: "Message from the Keynote Speaker",
+    photoSrc: "/photos/speakers/froilan-savet.jpg",
+  },
 ];
 
 export const day1Speakers: EventPerson[] = [

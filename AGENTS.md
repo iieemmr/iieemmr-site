@@ -43,7 +43,8 @@ Content and layout come first. Once section copy, dates, and photos are final, w
 - [ ] Open Graph + Twitter card metadata (title, description, image) — depends on final hero copy
 - [ ] Canonical URL in metadata
 - [ ] JSON-LD `Event` structured data (dates, location, organizer) — depends on final event details
-- [ ] Branded favicon + OG image (replace default `next.svg`/`vercel.svg`/etc. in `public/`)
+- [x] Branded favicon (`app/icon.png` + `app/apple-icon.png`, source logo at `public/brand/iiee-logo.png`); default `next.svg`/`vercel.svg`/etc. scaffold placeholders removed from `public/`
+- [ ] OG image — still depends on final hero copy (separate from the favicon, now done)
 - [x] Custom `app/not-found.tsx` + `app/error.tsx` (branded 404/error, auto-wrapped in `SiteNav`/`SiteFooter` via root layout)
 - [ ] Final content/animation pass (fade-ins, scroll effects)
 

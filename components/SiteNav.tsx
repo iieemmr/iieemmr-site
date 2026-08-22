@@ -1,17 +1,21 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
-  { href: "#before-after", label: "Then & Now" },
-  { href: "#event-details", label: "Event" },
-  { href: "#video-highlights", label: "Highlights" },
-  { href: "#sponsors", label: "Sponsors" },
-  { href: "#mmr-history", label: "History" },
-  { href: "#gallery", label: "Gallery" },
+  { href: "/#before-after", label: "Presenting" },
+  { href: "/#event-details", label: "Event" },
+  { href: "/#video-highlights", label: "Highlights" },
+  { href: "/sponsors", label: "Sponsors" },
+  { href: "/#mmr-history", label: "History" },
+  { href: "/#gallery", label: "Gallery" },
 ];
 
 export default function SiteNav() {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [activeId, setActiveId] = useState<string | null>(null);
   const [indicator, setIndicator] = useState({ left: 0, width: 0, ready: false });
@@ -21,8 +25,14 @@ export default function SiteNav() {
   const mobileLinkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
 
   useEffect(() => {
-    const sections = navLinks
-      .map((link) => document.querySelector(link.href))
+    // Full-page routes (e.g. "/sponsors") aren't in-page anchors — scroll-spy
+    // only applies on the homepage; other pages are highlighted by pathname
+    // directly during render instead.
+    if (pathname !== "/") return;
+
+    const anchorLinks = navLinks.filter((link) => link.href.startsWith("/#"));
+    const sections = anchorLinks
+      .map((link) => document.querySelector(link.href.slice(1)))
       .filter((el): el is Element => el !== null);
 
     if (sections.length === 0) return;
@@ -31,7 +41,7 @@ export default function SiteNav() {
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
-            setActiveId(`#${entry.target.id}`);
+            setActiveId(`/#${entry.target.id}`);
           }
         }
       },
@@ -41,11 +51,13 @@ export default function SiteNav() {
     sections.forEach((section) => observer.observe(section));
 
     return () => observer.disconnect();
-  }, []);
+  }, [pathname]);
+
+  const activeNavId = pathname !== "/" ? pathname : activeId;
 
   useEffect(() => {
     const updateIndicator = () => {
-      const activeLink = activeId ? linkRefs.current[activeId] : null;
+      const activeLink = activeNavId ? linkRefs.current[activeNavId] : null;
       if (!activeLink) {
         setIndicator((prev) => ({ ...prev, ready: false }));
         return;
@@ -60,10 +72,10 @@ export default function SiteNav() {
     updateIndicator();
     window.addEventListener("resize", updateIndicator);
     return () => window.removeEventListener("resize", updateIndicator);
-  }, [activeId]);
+  }, [activeNavId]);
 
   useEffect(() => {
-    const activeLink = activeId ? mobileLinkRefs.current[activeId] : null;
+    const activeLink = activeNavId ? mobileLinkRefs.current[activeNavId] : null;
     if (!activeLink) {
       setMobileIndicator((prev) => ({ ...prev, ready: false }));
       return;
@@ -73,38 +85,47 @@ export default function SiteNav() {
       height: activeLink.offsetHeight,
       ready: true,
     });
-  }, [activeId, isOpen]);
+  }, [activeNavId, isOpen]);
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-navy-950/95 backdrop-blur">
       <div className="mx-auto flex min-h-16 max-w-5xl items-center justify-between gap-4 px-6 py-3 sm:px-10">
-        <a
-          href="#"
-          className="shrink-0 font-heading text-sm font-semibold text-white sm:text-base"
+        <Link
+          href="/"
+          className="flex shrink-0 items-center gap-2 font-heading text-sm font-semibold text-white sm:text-base"
         >
+          <Image
+            src="/brand/iiee-logo.png"
+            alt=""
+            width={28}
+            height={28}
+            className="h-7 w-7"
+          />
           12th MMRC
-        </a>
+        </Link>
 
         <nav
           ref={navRef}
           aria-label="Section navigation"
           className="relative hidden gap-x-5 text-sm font-medium text-slate-300 sm:flex"
         >
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              ref={(el) => {
-                linkRefs.current[link.href] = el;
-              }}
-              href={link.href}
-              aria-current={activeId === link.href ? "true" : undefined}
-              className={`whitespace-nowrap py-1 transition-colors duration-300 ease-out hover:text-brand-gold ${
-                activeId === link.href ? "text-brand-gold" : ""
-              }`}
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) => {
+            return (
+              <Link
+                key={link.href}
+                ref={(el: HTMLAnchorElement | null) => {
+                  linkRefs.current[link.href] = el;
+                }}
+                href={link.href}
+                aria-current={activeNavId === link.href ? "true" : undefined}
+                className={`whitespace-nowrap py-1 transition-colors duration-300 ease-out hover:text-brand-gold ${
+                  activeNavId === link.href ? "text-brand-gold" : ""
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
           <span
             aria-hidden="true"
             className="pointer-events-none absolute bottom-0 h-0.5 rounded-full bg-brand-gold transition-all duration-300 ease-out"
@@ -157,22 +178,24 @@ export default function SiteNav() {
               opacity: mobileIndicator.ready ? 1 : 0,
             }}
           />
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              ref={(el) => {
-                mobileLinkRefs.current[link.href] = el;
-              }}
-              href={link.href}
-              onClick={() => setIsOpen(false)}
-              aria-current={activeId === link.href ? "true" : undefined}
-              className={`rounded-md px-2 py-2 transition-colors duration-300 ease-out hover:bg-white/5 hover:text-brand-gold ${
-                activeId === link.href ? "text-brand-gold" : ""
-              }`}
-            >
-              {link.label}
-            </a>
-          ))}
+          {navLinks.map((link) => {
+            return (
+              <Link
+                key={link.href}
+                ref={(el: HTMLAnchorElement | null) => {
+                  mobileLinkRefs.current[link.href] = el;
+                }}
+                href={link.href}
+                onClick={() => setIsOpen(false)}
+                aria-current={activeNavId === link.href ? "true" : undefined}
+                className={`rounded-md px-2 py-2 transition-colors duration-300 ease-out hover:bg-white/5 hover:text-brand-gold ${
+                  activeNavId === link.href ? "text-brand-gold" : ""
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
       ) : null}
     </header>
