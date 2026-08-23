@@ -18,7 +18,7 @@ const poppins = Poppins({
 
 const SITE_TITLE = "12th MMRC Recap | IIEE Metro Manila Region";
 const SITE_DESCRIPTION =
-  "A recap of the 12th IIEE Metro Manila Regional Conference (Brighter 2026) — highlights, speakers, sponsors, and photos from four days of learning, innovation, fellowship, and service.";
+  "Relive the 12th IIEE Metro Manila Regional Conference (Brighter 2026): highlights, speakers, sponsors, and photos.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://iieemmr-site.vercel.app"),
