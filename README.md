@@ -24,6 +24,8 @@ Shared, reusable pieces live in `components/shared/`: `BeforeAfterSlider` (compa
 
 `app/icon.png` and `app/apple-icon.png` are the browser tab icon and iOS home-screen icon (Next.js's file-convention icons — no code wiring needed). The full-resolution source logo lives at `public/brand/iiee-logo.png`, for any future branding use beyond the icons.
 
+`public/og-image.jpg` is the Open Graph/Twitter share image (1200×630, cropped from `public/photos/hero.jpg`), wired into the `openGraph`/`twitter` metadata in `app/layout.tsx`.
+
 ## Swapping in real content
 
 Nothing is hardcoded into the components — all copy-adjacent data lives in `data/*.ts`:
