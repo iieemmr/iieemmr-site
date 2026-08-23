@@ -56,20 +56,26 @@ export default function VideoCarousel({ videos }: VideoCarouselProps) {
       onKeyDown={handleKeyDown}
       className="flex flex-col gap-4 rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold"
     >
-      <div className="-mr-6 overflow-hidden sm:-mr-10 lg:mr-0" ref={emblaRef}>
-        <div className="-ml-4 flex [touch-action:pan-y_pinch-zoom]">
-          {videos.map((video, index) => (
-            <div className="min-w-0 flex-[0_0_85%] pl-4 sm:flex-[0_0_75%]" key={video.id}>
-              <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-navy-900">
-                <VideoMedia
-                  videoUrl={video.videoUrl}
-                  title={video.title}
-                  isActive={index === selectedIndex}
-                />
+      <div className="relative -mr-6 sm:-mr-10 lg:mr-0">
+        <div className="overflow-hidden" ref={emblaRef}>
+          <div className="-ml-4 flex [touch-action:pan-y_pinch-zoom]">
+            {videos.map((video, index) => (
+              <div className="min-w-0 flex-[0_0_85%] pl-4 sm:flex-[0_0_75%]" key={video.id}>
+                <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-navy-900">
+                  <VideoMedia
+                    videoUrl={video.videoUrl}
+                    title={video.title}
+                    isActive={index === selectedIndex}
+                  />
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-navy-950 to-transparent sm:w-24"
+        />
       </div>
 
       <p className="text-sm text-slate-300 sm:text-base">{videos[selectedIndex].caption}</p>

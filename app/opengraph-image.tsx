@@ -66,20 +66,11 @@ export default async function Image() {
           style={{
             position: "absolute",
             inset: 0,
+            width: "100%",
+            height: "100%",
             display: "flex",
-            backgroundColor: "rgba(5,11,31,0.6)",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            left: 0,
-            right: 0,
-            top: 90,
-            height: 460,
-            display: "flex",
-            background:
-              "linear-gradient(180deg, rgba(5,11,31,0) 0%, rgba(5,11,31,0.85) 20%, rgba(5,11,31,0.85) 80%, rgba(5,11,31,0) 100%)",
+            background: "linear-gradient(118deg, #050b1f 0%, #0b1533 50%, #101d40 100%)",
+            opacity: 0.9,
           }}
         />
 
@@ -118,22 +109,33 @@ export default async function Image() {
             padding: "0 90px",
           }}
         >
-          <span
+          <div
             style={{
               display: "flex",
+              flexDirection: "row",
+              alignItems: "baseline",
               fontFamily: "Poppins",
               fontWeight: 800,
-              fontSize: 36,
-              color: "#f5c518",
-              letterSpacing: 1,
+              fontSize: 48,
+              lineHeight: 1.15,
             }}
           >
-            12th
-          </span>
+            <span
+              style={{
+                display: "flex",
+                marginRight: 16,
+                backgroundImage: "linear-gradient(90deg, #1e5fd9, #1fbaa6, #f5c518)",
+                backgroundClip: "text",
+                color: "transparent",
+              }}
+            >
+              12th
+            </span>
+            <span style={{ display: "flex", color: "#ffffff" }}>Metro Manila</span>
+          </div>
           <span
             style={{
               display: "flex",
-              marginTop: 8,
               fontFamily: "Poppins",
               fontWeight: 800,
               fontSize: 48,
@@ -141,7 +143,7 @@ export default async function Image() {
               color: "#ffffff",
             }}
           >
-            {TITLE_LINE}
+            Regional Conference
           </span>
           <span
             style={{
