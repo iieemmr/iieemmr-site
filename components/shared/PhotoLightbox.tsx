@@ -100,6 +100,7 @@ export default function PhotoLightbox({ photos }: PhotoLightboxProps) {
                     src={photo.src}
                     alt={photo.alt}
                     fill
+                    sizes="(min-width: 768px) 25vw, (min-width: 640px) 33vw, 50vw"
                     className="object-cover transition group-hover:scale-105"
                   />
                 </div>
@@ -158,6 +159,7 @@ export default function PhotoLightbox({ photos }: PhotoLightboxProps) {
                   src={activePhoto.src}
                   alt={activePhoto.alt}
                   fill
+                  sizes="(min-width: 672px) 672px, 100vw"
                   className="object-contain"
                 />
               </div>

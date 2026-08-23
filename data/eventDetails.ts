@@ -171,6 +171,9 @@ export const day4Speakers: EventPerson[] = [
     topic: "Cybersecurity & AI: Innovations, Challenges, and Applications",
     photoSrc: "/photos/speakers/gerhard-tan.jpg",
   },
+];
+
+export const wenSpeakers: EventPerson[] = [
   {
     name: "Engr. Amelia Cumpas",
     role: "Chairman, WEN Subcommittee",
@@ -201,7 +204,35 @@ export const hosts: Host[] = [
   { name: "Engr. Emman Allada", role: "MCC", photoSrc: null },
 ];
 
-export const exhibitorStat = {
-  value: "40+",
-  label: "exhibitors at the Exhibition Hall — exceeding target",
+export type GlanceStatIcon = "mic" | "storefront" | "certificate";
+
+export type GlanceStat = {
+  icon: GlanceStatIcon;
+  value: string;
+  label: string;
+  description: string;
 };
+
+export const atAGlanceStats: GlanceStat[] = [
+  {
+    icon: "mic",
+    value: "20+",
+    label: "Speakers",
+    description:
+      "Industry speakers and technical experts shared their knowledge and expertise across various technical topics and professional development sessions.",
+  },
+  {
+    icon: "storefront",
+    value: "40+",
+    label: "Exhibitors",
+    description:
+      "Exhibitors and industry partners showcased the latest electrical products, technologies, solutions, and services for the electrical engineering community.",
+  },
+  {
+    icon: "certificate",
+    value: "25.5",
+    label: "CPD points",
+    description:
+      "Up to 25.5 CPD points were available to participants who completed the corresponding conference activities and technical sessions.",
+  },
+];

@@ -9,7 +9,7 @@ const navLinks = [
   { href: "/#before-after", label: "Presenting" },
   { href: "/#event-details", label: "Event" },
   { href: "/#video-highlights", label: "Highlights" },
-  { href: "/sponsors", label: "Sponsors" },
+  { href: "/#sponsors", label: "Sponsors" },
   { href: "/#mmr-history", label: "History" },
   { href: "/#gallery", label: "Gallery" },
 ];
@@ -53,7 +53,10 @@ export default function SiteNav() {
     return () => observer.disconnect();
   }, [pathname]);
 
-  const activeNavId = pathname !== "/" ? pathname : activeId;
+  // "/sponsors" is the only subpage this nav links to (via the homepage
+  // teaser's CTA), so it still counts as the "Sponsors" section being active.
+  const activeNavId =
+    pathname === "/" ? activeId : pathname.startsWith("/sponsors") ? "/#sponsors" : pathname;
 
   useEffect(() => {
     const updateIndicator = () => {

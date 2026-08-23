@@ -5,7 +5,7 @@ export type LogoGridSize = "large" | "large-3col" | "medium" | "small";
 
 const SIZE_STYLES: Record<
   LogoGridSize,
-  { grid: string; card: string; logo: string; name: string; solo: string }
+  { grid: string; card: string; logo: string; name: string; solo: string; sizes: string }
 > = {
   large: {
     grid: "grid-cols-1 gap-8 sm:grid-cols-2",
@@ -13,6 +13,7 @@ const SIZE_STYLES: Record<
     logo: "h-32 sm:h-40",
     name: "text-lg font-semibold sm:text-xl",
     solo: "w-full max-w-sm sm:max-w-md",
+    sizes: "(min-width: 640px) 300px, 80vw",
   },
   // Same card treatment as "large", just allowed a third column on wide
   // screens for tiers with enough sponsors to fill it.
@@ -22,6 +23,7 @@ const SIZE_STYLES: Record<
     logo: "h-32 sm:h-40",
     name: "text-lg font-semibold sm:text-xl",
     solo: "w-full max-w-sm sm:max-w-md",
+    sizes: "(min-width: 640px) 300px, 80vw",
   },
   medium: {
     grid: "grid-cols-2 gap-5 sm:grid-cols-[repeat(auto-fill,minmax(220px,1fr))]",
@@ -29,6 +31,7 @@ const SIZE_STYLES: Record<
     logo: "h-20 sm:h-24",
     name: "text-sm font-medium",
     solo: "w-full max-w-[270px]",
+    sizes: "(min-width: 640px) 220px, 45vw",
   },
   small: {
     grid: "grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6",
@@ -36,6 +39,7 @@ const SIZE_STYLES: Record<
     logo: "h-12 sm:h-14",
     name: "text-[11px] font-medium",
     solo: "w-full max-w-[150px]",
+    sizes: "(min-width: 1024px) 150px, (min-width: 640px) 20vw, 33vw",
   },
 };
 
@@ -64,6 +68,7 @@ function SponsorCard({
           src={sponsor.logoSrc}
           alt={sponsor.alt}
           fill
+          sizes={styles.sizes}
           className="object-contain"
         />
       </div>

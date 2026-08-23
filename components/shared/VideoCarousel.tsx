@@ -56,7 +56,7 @@ export default function VideoCarousel({ videos }: VideoCarouselProps) {
       onKeyDown={handleKeyDown}
       className="flex flex-col gap-4 rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold"
     >
-      <div className="overflow-hidden" ref={emblaRef}>
+      <div className="-mr-6 overflow-hidden sm:-mr-10 lg:mr-0" ref={emblaRef}>
         <div className="-ml-4 flex [touch-action:pan-y_pinch-zoom]">
           {videos.map((video, index) => (
             <div className="min-w-0 flex-[0_0_85%] pl-4 sm:flex-[0_0_75%]" key={video.id}>
