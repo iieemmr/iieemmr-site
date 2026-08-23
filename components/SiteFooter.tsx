@@ -6,7 +6,7 @@ export default function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-white/10">
+    <footer>
       <div className="bg-brand-teal px-6 py-14 text-center sm:px-10 sm:py-20">
         <p className="font-heading text-2xl font-extrabold text-navy-950 sm:text-3xl md:text-4xl">
           Stay connected.
