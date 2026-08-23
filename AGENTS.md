@@ -63,5 +63,7 @@ Client contact: iieemmrgovernor@gmail.com
 - [ ] Pick a low-traffic cutover window; old Wix site goes down at that domain the moment DNS updates
 - [ ] Decide whether old Wix subpages (About/Events/Contact) need 301 redirects into the new single-page site, or if losing that SEO is acceptable
 - [ ] After cutover: client can downgrade/cancel Wix *hosting*, but keep domain registration/DNS wherever it lives
+- [ ] Update the hardcoded `BASE_URL` in `app/robots.ts` (and check `app/sitemap.ts` / `metadataBase` in `app/layout.tsx` for the same pattern) from `https://iieemmr-site.vercel.app` to `https://iieemmr.com` — otherwise the sitemap and canonical URLs keep pointing at the Vercel preview domain even after cutover
+- [ ] Verify `iieemmr.com` in Google Search Console (verification file already added at `public/googlee715dd38fb822485.html`, just needs the domain live) and submit the sitemap
 
 Costs: domain renewal stays with the client (already paying via Wix); Vercel Hobby hosting is free and sufficient for this site's traffic; GitHub is free (public repo); a Vercel Team seat is the only new cost, and only if the client wants their own login.
