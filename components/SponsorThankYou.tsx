@@ -64,7 +64,7 @@ export default function SponsorThankYou() {
       <div className="relative overflow-hidden bg-[radial-gradient(ellipse_110%_160%_at_0%_35%,var(--color-navy-800)_15%,var(--color-navy-950)_65%,#03060f_100%)] px-6 pb-28 pt-6 sm:px-10 sm:pb-32 sm:pt-8">
         <div
           aria-hidden="true"
-          className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-brand-gold to-transparent"
+          className="absolute inset-x-0 top-0 h-[4px] bg-gradient-to-r from-transparent via-brand-gold to-transparent"
         />
         <div className="relative mx-auto max-w-6xl">
           <Link
@@ -152,10 +152,10 @@ export default function SponsorThankYou() {
         </div>
       </div>
 
-      <div className="relative mt-16 overflow-hidden bg-[radial-gradient(ellipse_110%_160%_at_0%_35%,var(--color-navy-800)_15%,var(--color-navy-950)_65%,#03060f_100%)] px-6 py-[60px] sm:px-10">
+      <div className="relative mt-16 overflow-hidden bg-[radial-gradient(ellipse_110%_160%_at_100%_35%,var(--color-navy-800)_15%,var(--color-navy-950)_65%,#03060f_100%)] px-6 py-[60px] sm:px-10">
         <div
           aria-hidden="true"
-          className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-brand-gold to-transparent"
+          className="absolute inset-x-0 top-0 h-[4px] bg-gradient-to-r from-transparent via-brand-gold to-transparent"
         />
         <div className="relative mx-auto flex max-w-2xl flex-col items-center gap-3 text-center">
           <div className="flex items-center gap-2 text-brand-gold">

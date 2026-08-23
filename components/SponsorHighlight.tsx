@@ -40,34 +40,37 @@ export default function SponsorHighlight() {
     >
       <div className="mx-auto flex max-w-5xl flex-col items-center gap-8 text-center">
         {sponsorGalleryPhotos.length > 0 && (
-          <div
-            className="-mr-6 w-[calc(100%+1.5rem)] overflow-hidden sm:-mr-10 sm:w-[calc(100%+2.5rem)] lg:mr-0 lg:w-full"
-            ref={photoEmblaRef}
-          >
-            <div className="-ml-4 flex">
-              {sponsorGalleryPhotos.map((photo) => (
-                <div
-                  key={photo.src ?? photo.caption}
-                  className="min-w-0 flex-[0_0_85%] pl-4 sm:flex-[0_0_70%] lg:flex-[0_0_45%]"
-                >
-                  <div className="relative aspect-video overflow-hidden rounded-2xl shadow-lg">
-                    {photo.src ? (
-                      <Image
-                        src={photo.src}
-                        alt={photo.alt}
-                        fill
-                        sizes="(min-width: 1024px) 45vw, (min-width: 640px) 70vw, 85vw"
-                        className="object-cover"
-                      />
-                    ) : (
-                      <div className="flex h-full w-full items-center justify-center bg-navy-900 text-sm text-slate-400">
-                        {photo.caption}
-                      </div>
-                    )}
+          <div className="relative -mr-6 w-[calc(100%+1.5rem)] sm:-mr-10 sm:w-[calc(100%+2.5rem)] lg:mr-0 lg:w-full">
+            <div className="overflow-hidden" ref={photoEmblaRef}>
+              <div className="-ml-4 flex">
+                {sponsorGalleryPhotos.map((photo) => (
+                  <div
+                    key={photo.src ?? photo.caption}
+                    className="min-w-0 flex-[0_0_85%] pl-4 sm:flex-[0_0_70%] lg:flex-[0_0_45%]"
+                  >
+                    <div className="relative aspect-video overflow-hidden rounded-2xl shadow-lg">
+                      {photo.src ? (
+                        <Image
+                          src={photo.src}
+                          alt={photo.alt}
+                          fill
+                          sizes="(min-width: 1024px) 45vw, (min-width: 640px) 70vw, 85vw"
+                          className="object-cover"
+                        />
+                      ) : (
+                        <div className="flex h-full w-full items-center justify-center bg-navy-900 text-sm text-slate-400">
+                          {photo.caption}
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-navy-950 to-transparent sm:w-24"
+            />
           </div>
         )}
 
@@ -75,30 +78,33 @@ export default function SponsorHighlight() {
           Our Top Sponsors
         </h2>
 
-        <div
-          className="-mr-6 w-[calc(100%+1.5rem)] overflow-hidden sm:-mr-10 sm:w-[calc(100%+2.5rem)] lg:mr-0 lg:w-full"
-          ref={emblaRef}
-        >
-          <div className="-ml-4 flex">
-            {topSponsors.map((sponsor) => (
-              <div
-                key={sponsor.name}
-                className="min-w-0 flex-[0_0_45%] pl-4 sm:flex-[0_0_28%] lg:flex-[0_0_18%]"
-              >
-                <div className="flex h-24 items-center justify-center rounded-xl bg-white p-4 shadow-md sm:h-28">
-                  <div className="relative h-full w-full">
-                    <Image
-                      src={sponsor.logoSrc}
-                      alt={sponsor.alt}
-                      fill
-                      sizes="(min-width: 1024px) 18vw, (min-width: 640px) 28vw, 45vw"
-                      className="object-contain"
-                    />
+        <div className="relative -mr-6 w-[calc(100%+1.5rem)] sm:-mr-10 sm:w-[calc(100%+2.5rem)] lg:mr-0 lg:w-full">
+          <div className="overflow-hidden" ref={emblaRef}>
+            <div className="-ml-4 flex">
+              {topSponsors.map((sponsor) => (
+                <div
+                  key={sponsor.name}
+                  className="min-w-0 flex-[0_0_45%] pl-4 sm:flex-[0_0_28%] lg:flex-[0_0_18%]"
+                >
+                  <div className="flex h-24 items-center justify-center rounded-xl bg-white p-4 shadow-md sm:h-28">
+                    <div className="relative h-full w-full">
+                      <Image
+                        src={sponsor.logoSrc}
+                        alt={sponsor.alt}
+                        fill
+                        sizes="(min-width: 1024px) 18vw, (min-width: 640px) 28vw, 45vw"
+                        className="object-contain"
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-navy-950 to-transparent sm:w-16"
+          />
         </div>
 
         <Link

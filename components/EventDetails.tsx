@@ -110,7 +110,7 @@ export default function EventDetails() {
       <div className="relative mx-auto mt-10 max-w-6xl overflow-hidden rounded-2xl bg-[radial-gradient(ellipse_110%_160%_at_0%_35%,var(--color-navy-800)_15%,var(--color-navy-950)_65%,#03060f_100%)] p-10 sm:p-12">
         <div
           aria-hidden="true"
-          className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-transparent via-brand-gold to-transparent"
+          className="absolute inset-x-0 top-0 h-[4px] bg-gradient-to-r from-transparent via-brand-gold to-transparent"
         />
         <div className="grid grid-cols-1 divide-y divide-brand-gold/15 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
           {atAGlanceStats.map((stat) => (
