@@ -40,11 +40,11 @@ When asked to raise a PR, run through these steps in order rather than jumping s
 
 Content and layout come first. Once section copy, dates, and photos are final, work through this before shipping to prod:
 
-- [ ] Open Graph + Twitter card metadata (title, description, image) — depends on final hero copy
-- [ ] Canonical URL in metadata
+- [x] Open Graph + Twitter card metadata (title, description, image) — image is `public/og-image.jpg`, cropped from the hero photo
+- [x] Canonical URL in metadata
 - [ ] JSON-LD `Event` structured data (dates, location, organizer) — depends on final event details
 - [x] Branded favicon (`app/icon.png` + `app/apple-icon.png`, source logo at `public/brand/iiee-logo.png`); default `next.svg`/`vercel.svg`/etc. scaffold placeholders removed from `public/`
-- [ ] OG image — still depends on final hero copy (separate from the favicon, now done)
+- [x] OG image (`public/og-image.jpg`, separate from the favicon)
 - [x] Custom `app/not-found.tsx` + `app/error.tsx` (branded 404/error, auto-wrapped in `SiteNav`/`SiteFooter` via root layout)
 - [ ] Final content/animation pass (fade-ins, scroll effects)
 
