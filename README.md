@@ -6,16 +6,17 @@ Live at [iieemmr-site.vercel.app](https://iieemmr-site.vercel.app). Built with N
 
 ## Sections
 
-The homepage (`app/page.tsx`) renders six sections in order, one component each under `components/`:
+The homepage (`app/page.tsx`) renders seven sections in order, one component each under `components/`:
 
 1. **HeroRecap** — headline, thank-you subheadline, event dates/venue, and a "Watch Highlights" CTA
 2. **BeforeAfterHighlight** — "Then & Now" before/after image comparison slider
-3. **EventDetails** — exhibitor stats, opening program speakers, closing ceremony chapter roll call, and hosts
+3. **EventDetails** — "At a Glance" stats (speakers, exhibitors, CPD points), opening program speakers, closing ceremony chapter roll call, and hosts
 4. **VideoHighlight** — carousel of the conference's highlight reels
-5. **MMRHistoryVideo** — embeds the "IIEE MMR Through The Lens of Time" video
-6. **PhotoGallery** — lightbox photo grid
+5. **SponsorHighlight** — top-tier sponsor logo carousel, preceded by a peek-style photo carousel of exhibit hall/event photos, with a CTA to the full sponsors page
+6. **MMRHistoryVideo** — embeds the "IIEE MMR Through The Lens of Time" video
+7. **PhotoGallery** — lightbox photo grid
 
-**SponsorThankYou** lives on its own route, `app/sponsors/page.tsx`, rather than the homepage — it renders the full tier-grouped sponsor grid (Jade → Ruby → Diamond → Gold → Fellowship → Lunch → Others, in that client-confirmed prestige order, with a sticky in-page tier nav) plus the special acknowledgments block. Linked from `SiteNav` as "Sponsors".
+**SponsorThankYou** lives on its own route, `app/sponsors/page.tsx`, rather than the homepage — it renders the full tier-grouped sponsor grid (Jade → Ruby → Diamond → Gold → Fellowship → Lunch → Others, in that client-confirmed prestige order, with a sticky in-page tier nav) plus the special acknowledgments block, and a "Back to Home" link above the heading. `SiteNav`'s "Sponsors" item is an in-page anchor to the homepage's `SponsorHighlight` teaser (like the rest of the nav); the teaser's own "View All Sponsors →" CTA is the only link into this full page.
 
 Shared, reusable pieces live in `components/shared/`: `BeforeAfterSlider` (compare-slider for the Then & Now section, dynamically imported client-side via `BeforeAfterSliderClient` with `ssr: false`), `VideoCarousel` (embla-carousel-powered slider over multiple `VideoEmbed`s, used by `VideoHighlight`), `VideoEmbed` (video player wrapper built on `VideoMedia`; renders a placeholder until a real video URL is supplied), `VideoMedia` (renders a YouTube iframe or `<video>` element depending on the URL, using each platform's native playback controls), `PlaceholderBox` (generic labeled placeholder for logos/photos), `LogoGrid`, `PhotoLightbox`, and `ShareButton` (native share sheet with clipboard-copy fallback).
 
@@ -28,8 +29,9 @@ Shared, reusable pieces live in `components/shared/`: `BeforeAfterSlider` (compa
 Nothing is hardcoded into the components — all copy-adjacent data lives in `data/*.ts`:
 
 - `data/beforeAfter.ts` — before/after image pair (`beforeSrc`/`afterSrc`) for the Then & Now slider
-- `data/eventDetails.ts` — opening speakers, closing chapter reps, hosts, exhibitor stat
+- `data/eventDetails.ts` — "At a Glance" stats (`atAGlanceStats`), opening speakers, closing chapter reps, hosts
 - `data/sponsors.ts` — tiered sponsor roster (`TIER_ORDER`: Jade, Ruby, Diamond, Gold, Fellowship, Lunch, Others) with real logos already wired to `public/photos/sponsors/`, plus the special acknowledgments list
+- `data/sponsorGallery.ts` — photo strip shown above the sponsor logos in `SponsorHighlight`; real event photos wired to `public/photos/sponsor-highlights/`
 - `data/videos.ts` — `highlightReels` (array of video entries shown in the `VideoHighlight` carousel) and `historyVideo`; `videoUrl` is a YouTube link or direct video file — real conference videos are wired in
 - `data/gallery.ts` — 16 photo slots; set `src` on each entry once real event photos are sourced
 

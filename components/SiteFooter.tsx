@@ -28,6 +28,7 @@ export default function SiteFooter() {
               src="/facebook-page-preview.png"
               alt="IIEE Metro Manila Region Facebook Page — 5K followers"
               fill
+              sizes="(min-width: 672px) 672px, 100vw"
               className="object-cover transition group-hover:scale-105"
             />
           </div>
