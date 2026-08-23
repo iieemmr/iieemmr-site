@@ -12,6 +12,8 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 `README.md`'s "Sections" and "Swapping in real content" describe the page's current sections, shared components, and data-file conventions — read it before adding a new section or component so you're extending the existing pattern rather than rediscovering it. Keep it updated per the PR-checklist rule below whenever a diff adds/removes/renames a section, shared component, or data file.
 
+`README.md`'s "Typography" table documents the site's type scale by role (section heading, caption, button, etc.) — there's no shared `tailwind.config.*` scale or `Heading`/`Text` component enforcing it, so match an existing role from that table when adding new text rather than picking a size that merely looks right in isolation. Update the table if a new role gets introduced.
+
 # Git workflow
 
 This repo auto-deletes branches on merge — one branch per PR is the convention. Before starting new work, pull `main` and cut a fresh branch off it rather than reusing an old (already-merged) branch name.

@@ -26,6 +26,24 @@ Shared, reusable pieces live in `components/shared/`: `BeforeAfterSlider` (compa
 
 `app/opengraph-image.tsx` generates the Open Graph/Twitter share image (1200×630) at build time via `next/og`'s `ImageResponse` — the hero photo with the same navy gradient/brand-color treatment as `HeroRecap`, not a bare screenshot. Next.js wires the resulting `og:image` tag automatically; Twitter/X falls back to it since no separate `twitter-image` is defined.
 
+## Typography
+
+There's no shared `tailwind.config.*` type scale or `Heading`/`Text` component — every heading, caption, and label uses Tailwind's default `text-*` scale applied directly in each component (`app/globals.css`'s `@theme inline` only defines color and font-family tokens, e.g. `--font-heading` for Poppins headings vs. `--font-sans`/Inter for body text). Consistency is kept by following the same size for the same *role*, wherever it appears — snap to the nearest default step (`text-sm`, `text-base`, `text-xl`, ...) rather than reaching for an arbitrary value like `text-[13px]`. Current roles in use:
+
+| Role | Classes | Used by |
+| --- | --- | --- |
+| Homepage H1 | `text-4xl font-extrabold sm:text-5xl md:text-6xl` | `HeroRecap` headline |
+| Secondary-page H1 | `text-3xl font-bold sm:text-4xl md:text-5xl` | `SponsorThankYou`, `not-found.tsx`, `error.tsx` |
+| Section heading (H2) | `text-3xl font-bold sm:text-4xl` | Every homepage section's title (`BeforeAfterHighlight`, `EventDetails`, `VideoHighlight`, `SponsorHighlight`, `MMRHistoryVideo`, `PhotoGallery`) and `SiteFooter`'s "Stay connected." |
+| Subsection heading (H3) | `text-xl font-semibold sm:text-2xl` | `EventDetails`' "Keynote Speakers"/day headings, `SponsorThankYou`'s per-tier headings |
+| Standalone caption / body paragraph | `text-sm sm:text-base` | Video/lightbox captions, footer body, hero intro, 404/error body copy — reading content that scales up with the viewport |
+| Muted microcopy attached to an element | flat `text-sm` (no `sm:` step) | Card role/topic text, footnotes/disclaimers, fallback captions — de-emphasized, so it never grows past body-copy size |
+| Eyebrow / label | `text-xs font-semibold uppercase tracking-wide` (or `tracking-widest`) | "With Gratitude", date/venue caption, tier "N Total" labels |
+| Primary CTA button | `text-base font-semibold` | "Watch Highlights", "View All Sponsors & Partners" |
+| Secondary/utility button | `text-sm font-medium` | `ShareButton`, `PhotoLightbox`'s "Load more"/"Show less" |
+
+When adding a new section or component, match whichever role fits rather than picking a size that merely looks right in isolation — that's what caused the drift this table now documents.
+
 ## Swapping in real content
 
 Nothing is hardcoded into the components — all copy-adjacent data lives in `data/*.ts`:
