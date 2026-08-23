@@ -84,7 +84,7 @@ function PersonCard({ person }: { person: EventPerson }) {
         </div>
       )}
       <div>
-        <p className="font-medium text-navy-950">{person.name}</p>
+        <p className="text-base font-medium text-navy-950">{person.name}</p>
         {person.role && (
           <p className="text-sm text-slate-600">{person.role}</p>
         )}
@@ -122,10 +122,10 @@ export default function EventDetails() {
               <span className="font-heading text-4xl font-semibold tracking-tight text-brand-gold">
                 {stat.value}
               </span>
-              <span className="text-[15px] font-semibold text-white">
+              <span className="text-base font-semibold text-white">
                 {stat.label}
               </span>
-              <p className="text-[13.5px] leading-relaxed text-slate-400">
+              <p className="text-sm leading-relaxed text-slate-400">
                 {stat.description}
               </p>
             </div>
@@ -142,7 +142,7 @@ export default function EventDetails() {
             <PersonCard key={speaker.name} person={speaker} />
           ))}
         </ul>
-        <p className="text-sm italic text-slate-500 sm:text-base">
+        <p className="text-sm italic text-slate-500">
           All speakers volunteered their time and expertise, with no
           professional fee.
         </p>
@@ -177,7 +177,7 @@ export default function EventDetails() {
             <h3 className="font-heading text-xl font-semibold text-navy-950 sm:text-2xl">
               Day 2 — {day2Theme}
             </h3>
-            <p className="text-sm italic text-slate-500 sm:text-base">
+            <p className="text-sm italic text-slate-500">
               {day2Note}
             </p>
             <ul className="grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4">
