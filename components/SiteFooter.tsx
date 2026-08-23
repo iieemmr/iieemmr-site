@@ -8,7 +8,7 @@ export default function SiteFooter() {
   return (
     <footer>
       <div className="bg-brand-teal px-6 py-14 text-center sm:px-10 sm:py-20">
-        <p className="font-heading text-2xl font-extrabold text-navy-950 sm:text-3xl md:text-4xl">
+        <p className="font-heading text-3xl font-extrabold text-navy-950 sm:text-4xl">
           Stay connected.
         </p>
         <p className="mx-auto mt-3 max-w-xl text-sm text-navy-950/80 sm:text-base">

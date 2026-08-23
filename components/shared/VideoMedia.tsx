@@ -62,7 +62,7 @@ export default function VideoMedia({ videoUrl, title, isActive = false }: VideoM
         </svg>
       </span>
       <p className="font-heading text-sm font-semibold text-white sm:text-base">{title}</p>
-      <p className="text-xs text-slate-300 sm:text-sm">Video coming soon</p>
+      <p className="text-sm text-slate-300 sm:text-base">Video coming soon</p>
     </div>
   );
 }

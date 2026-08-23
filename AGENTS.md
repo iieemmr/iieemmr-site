@@ -47,6 +47,7 @@ Content and layout come first. Once section copy, dates, and photos are final, w
 - [x] OG image (`app/opengraph-image.tsx`, separate from the favicon)
 - [x] Custom `app/not-found.tsx` + `app/error.tsx` (branded 404/error, auto-wrapped in `SiteNav`/`SiteFooter` via root layout)
 - [ ] Final content/animation pass (fade-ins, scroll effects)
+- [ ] Accessibility pass — alt text on all photos/images, real heading hierarchy (no skipped levels), color contrast check on the dark theme, keyboard-navigable nav/menu. Not caught by type-check/lint, easy to skip if not called out explicitly.
 
 Already done: `app/robots.ts`, `app/sitemap.ts`, `metadataBase` in `app/layout.tsx`.
 
@@ -59,6 +60,7 @@ Client contact: iieemmrgovernor@gmail.com
 - [ ] Confirm Vercel plan is appropriate once real usage is known — Hobby is intended for personal/non-commercial use per Vercel's terms; if IIEE MMR's traffic or org use counts as commercial, Pro may be the correct (not just higher-traffic) plan regardless of whether Hobby's usage limits are actually hit
 - [ ] Confirm who controls DNS for the Wix account behind `iieemmr.com` (client's real domain, currently Wix-hosted)
 - [ ] Add `iieemmr.com` + `www.iieemmr.com` in Vercel project → Settings → Domains, get the required A/CNAME records
+- [ ] Pick `iieemmr.com` or `www.iieemmr.com` as the canonical (primary) domain in Vercel's domain settings — Vercel auto-redirects the other to it. `metadataBase` in `app/layout.tsx` must match whichever is picked, otherwise the canonical URL and OG tags point at the redirected-away domain
 - [ ] Update those records in Wix DNS — do **not** touch MX/TXT records if the client has `@iieemmr.com` email
 - [ ] Pick a low-traffic cutover window; old Wix site goes down at that domain the moment DNS updates
 - [ ] Decide whether old Wix subpages (About/Events/Contact) need 301 redirects into the new single-page site, or if losing that SEO is acceptable

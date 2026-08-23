@@ -37,7 +37,7 @@ const SIZE_STYLES: Record<
     grid: "grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6",
     card: "gap-2 rounded-lg border border-slate-200 bg-white p-2",
     logo: "h-12 sm:h-14",
-    name: "text-[11px] font-medium",
+    name: "text-xs font-medium",
     solo: "w-full max-w-[150px]",
     sizes: "(min-width: 1024px) 150px, (min-width: 640px) 20vw, 33vw",
   },
@@ -75,7 +75,7 @@ function SponsorCard({
       <p className={`text-slate-700 ${styles.name}`}>
         {sponsor.name}
         {sponsor.subCategory ? (
-          <span className="block text-[10px] font-normal text-slate-400">
+          <span className="block text-xs font-normal text-slate-400">
             {sponsor.subCategory}
           </span>
         ) : null}

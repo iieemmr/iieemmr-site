@@ -176,7 +176,7 @@ export default function SponsorThankYou() {
             const restNote = restWords.join(" ");
             return (
               <div key={ack.name} className="flex flex-col gap-1">
-                <p className="font-heading text-[22px] font-medium text-white">
+                <p className="font-heading text-xl font-medium text-white">
                   {ack.name}
                   <span className="text-[#8FA3C7]"> — {firstWord}</span>
                 </p>
