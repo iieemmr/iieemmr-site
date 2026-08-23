@@ -34,7 +34,10 @@ export default function SponsorHighlight() {
   if (topSponsors.length === 0) return null;
 
   return (
-    <section id="sponsors" className="bg-navy-950 px-6 py-20 sm:px-10">
+    <section
+      id="sponsors"
+      className="bg-navy-950 px-6 py-20 sm:px-10"
+    >
       <div className="mx-auto flex max-w-5xl flex-col items-center gap-8 text-center">
         {sponsorGalleryPhotos.length > 0 && (
           <div
