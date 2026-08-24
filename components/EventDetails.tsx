@@ -58,7 +58,13 @@ function GlanceIcon({ icon }: { icon: GlanceStatIcon }) {
   );
 }
 
-function PersonCard({ person }: { person: EventPerson }) {
+function PersonCard({
+  person,
+  hideTopic = false,
+}: {
+  person: EventPerson;
+  hideTopic?: boolean;
+}) {
   return (
     <li
       key={person.name}
@@ -88,7 +94,7 @@ function PersonCard({ person }: { person: EventPerson }) {
         {person.role && (
           <p className="text-sm text-slate-600">{person.role}</p>
         )}
-        {person.topic && (
+        {person.topic && !hideTopic && (
           <p className="mt-1 text-sm font-medium text-brand-blue">
             {person.topic}
           </p>
@@ -141,13 +147,9 @@ export default function EventDetails() {
         </h3>
         <ul className="grid grid-cols-1 gap-3 sm:grid-cols-4 sm:gap-4">
           {keynoteSpeakers.map((speaker) => (
-            <PersonCard key={speaker.name} person={speaker} />
+            <PersonCard key={speaker.name} person={speaker} hideTopic />
           ))}
         </ul>
-        <p className="text-sm italic text-slate-500">
-          All speakers volunteered their time and expertise, with no
-          professional fee.
-        </p>
       </div>
 
       <div>

@@ -118,8 +118,8 @@ export default function VideoCarousel({ videos }: VideoCarouselProps) {
               >
                 <span className="absolute h-3.5 w-3.5 rounded-full border border-white/30" />
                 <span
-                  className={`absolute h-3.5 w-3.5 rounded-full border-2 border-brand-gold transition-opacity ${
-                    isSelected ? "opacity-100" : "opacity-0"
+                  className={`absolute h-3.5 w-3.5 rounded-full border-2 border-brand-gold transition-all duration-300 ease-out ${
+                    isSelected ? "scale-100 opacity-100" : "scale-0 opacity-0"
                   }`}
                 />
               </button>
