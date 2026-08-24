@@ -95,6 +95,16 @@ export default function SiteNav() {
       <div className="mx-auto flex min-h-16 max-w-5xl items-center justify-between gap-4 px-6 py-3 sm:px-10">
         <Link
           href="/"
+          onClick={(event) => {
+            // Next's router treats "/" -> "/" (even with a different hash)
+            // as a same-route no-op and won't scroll, so the logo silently
+            // does nothing if you're already on the homepage. Force it.
+            if (pathname === "/") {
+              event.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+              window.history.replaceState(null, "", "/");
+            }
+          }}
           className="flex shrink-0 items-center gap-2 font-heading text-sm font-semibold text-white sm:text-base"
         >
           <Image
@@ -148,21 +158,23 @@ export default function SiteNav() {
           aria-label={isOpen ? "Close menu" : "Open menu"}
           className="flex h-9 w-9 items-center justify-center rounded-md text-slate-300 transition hover:text-brand-gold sm:hidden"
         >
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={2}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="h-6 w-6"
-          >
-            {isOpen ? (
-              <path d="M6 6l12 12M18 6l-12 12" />
-            ) : (
-              <path d="M4 7h16M4 12h16M4 17h16" />
-            )}
-          </svg>
+          <span className="relative flex h-4 w-6 flex-col justify-between">
+            <span
+              className={`h-0.5 w-6 rounded-full bg-current transition-all duration-300 ease-out ${
+                isOpen ? "translate-y-[7px] rotate-45" : ""
+              }`}
+            />
+            <span
+              className={`h-0.5 w-6 rounded-full bg-current transition-all duration-300 ease-out ${
+                isOpen ? "opacity-0" : "opacity-100"
+              }`}
+            />
+            <span
+              className={`h-0.5 w-6 rounded-full bg-current transition-all duration-300 ease-out ${
+                isOpen ? "-translate-y-[7px] -rotate-45" : ""
+              }`}
+            />
+          </span>
         </button>
       </div>
 
