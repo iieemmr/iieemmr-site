@@ -107,24 +107,26 @@ export default function EventDetails() {
         </h2>
       </div>
 
-      <div className="relative mx-auto mt-10 max-w-6xl overflow-hidden rounded-2xl bg-[radial-gradient(ellipse_110%_160%_at_0%_35%,var(--color-navy-800)_15%,var(--color-navy-950)_65%,#03060f_100%)] p-10 sm:p-12">
+      <div className="relative mx-auto mt-10 max-w-6xl overflow-hidden rounded-2xl bg-[radial-gradient(ellipse_110%_160%_at_0%_35%,var(--color-navy-800)_15%,var(--color-navy-950)_85%,#03060f_100%)] p-10 sm:p-12">
         <div
           aria-hidden="true"
           className="absolute inset-x-0 top-0 h-[4px] bg-gradient-to-r from-transparent via-brand-gold to-transparent"
         />
-        <div className="grid grid-cols-1 divide-y divide-brand-gold/15 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+        <div className="grid grid-cols-1 divide-y divide-brand-gold/15 lg:grid-cols-3 lg:divide-x lg:divide-y-0">
           {atAGlanceStats.map((stat) => (
             <div
               key={stat.label}
-              className="flex flex-col gap-3 py-6 first:pt-0 last:pb-0 sm:px-8 sm:py-0 sm:first:pl-0 sm:last:pr-0"
+              className="flex flex-col gap-3 py-6 first:pt-0 last:pb-0 lg:px-8 lg:py-0 lg:first:pl-0 lg:last:pr-0"
             >
               <GlanceIcon icon={stat.icon} />
-              <span className="font-heading text-4xl font-semibold tracking-tight text-brand-gold">
-                {stat.value}
-              </span>
-              <span className="text-base font-semibold text-white">
-                {stat.label}
-              </span>
+              <div className="flex flex-col gap-1">
+                <span className="font-heading text-4xl font-semibold tracking-tight text-brand-gold">
+                  {stat.value}
+                </span>
+                <span className="text-base font-semibold text-white">
+                  {stat.label}
+                </span>
+              </div>
               <p className="text-sm leading-relaxed text-slate-400">
                 {stat.description}
               </p>
