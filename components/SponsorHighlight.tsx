@@ -8,7 +8,7 @@ import Autoplay from "embla-carousel-autoplay";
 import { sponsors, type Tier } from "@/data/sponsors";
 import { sponsorGalleryPhotos } from "@/data/sponsorGallery";
 
-const TOP_TIERS: Tier[] = ["Jade", "Ruby", "Diamond"];
+const TOP_TIERS: Tier[] = ["Venue", "Jade", "Ruby", "Diamond"];
 const topSponsors = sponsors.filter((sponsor) => TOP_TIERS.includes(sponsor.tier));
 
 export default function SponsorHighlight() {
@@ -36,12 +36,15 @@ export default function SponsorHighlight() {
   return (
     <section
       id="sponsors"
-      className="bg-navy-950 px-6 py-20 sm:px-10"
+      className="bg-[radial-gradient(ellipse_80%_100%_at_100%_0%,var(--color-navy-800)_0%,var(--color-navy-950)_100%)] px-6 pb-20 pt-28 sm:px-10"
     >
       <div className="mx-auto flex max-w-5xl flex-col items-center gap-8 text-center">
         {sponsorGalleryPhotos.length > 0 && (
           <div className="relative -mr-6 w-[calc(100%+1.5rem)] sm:-mr-10 sm:w-[calc(100%+2.5rem)] lg:mr-0 lg:w-full">
-            <div className="overflow-hidden" ref={photoEmblaRef}>
+            <div
+              className="overflow-hidden [-webkit-mask-image:linear-gradient(to_left,transparent,black_4rem)] [mask-image:linear-gradient(to_left,transparent,black_4rem)] sm:[-webkit-mask-image:linear-gradient(to_left,transparent,black_6rem)] sm:[mask-image:linear-gradient(to_left,transparent,black_6rem)]"
+              ref={photoEmblaRef}
+            >
               <div className="-ml-4 flex">
                 {sponsorGalleryPhotos.map((photo) => (
                   <div
@@ -67,10 +70,6 @@ export default function SponsorHighlight() {
                 ))}
               </div>
             </div>
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-navy-950 to-transparent sm:w-24"
-            />
           </div>
         )}
 
@@ -79,7 +78,10 @@ export default function SponsorHighlight() {
         </h2>
 
         <div className="relative -mr-6 w-[calc(100%+1.5rem)] sm:-mr-10 sm:w-[calc(100%+2.5rem)] lg:mr-0 lg:w-full">
-          <div className="overflow-hidden" ref={emblaRef}>
+          <div
+            className="overflow-hidden [-webkit-mask-image:linear-gradient(to_left,transparent,black_3rem)] [mask-image:linear-gradient(to_left,transparent,black_3rem)] sm:[-webkit-mask-image:linear-gradient(to_left,transparent,black_4rem)] sm:[mask-image:linear-gradient(to_left,transparent,black_4rem)]"
+            ref={emblaRef}
+          >
             <div className="-ml-4 flex">
               {topSponsors.map((sponsor) => (
                 <div
@@ -101,10 +103,6 @@ export default function SponsorHighlight() {
               ))}
             </div>
           </div>
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-navy-950 to-transparent sm:w-16"
-          />
         </div>
 
         <Link

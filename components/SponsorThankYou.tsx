@@ -7,6 +7,7 @@ import { useReplayOnView } from "@/components/shared/useReplayOnView";
 import { TIER_ORDER, sponsors, acknowledgments, type Tier } from "@/data/sponsors";
 
 const TIER_SIZE: Record<Tier, LogoGridSize> = {
+  Venue: "xlarge",
   Jade: "large",
   Ruby: "large",
   Diamond: "large-3col",

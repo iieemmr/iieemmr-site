@@ -1,4 +1,5 @@
 export const TIER_ORDER = [
+  "Venue",
   "Jade",
   "Ruby",
   "Diamond",
@@ -19,13 +20,15 @@ export type Sponsor = {
 };
 
 export const sponsors: Sponsor[] = [
+  // Venue
+  { name: "Meralco", tier: "Venue", logoSrc: "/photos/sponsors/VENUE_Meralco_logo.png", alt: "Meralco logo" },
+
   // Jade
-  { name: "Westco", tier: "Jade", logoSrc: "/photos/sponsors/JADE_Westco_logo.png", alt: "Westco logo" },
-  { name: "American Wire & Cable", tier: "Jade", logoSrc: "/photos/sponsors/JADE_AmericanWireCable_logo.png", alt: "American Wire & Cable logo" },
   { name: "Cargill", tier: "Jade", logoSrc: "/photos/sponsors/JADE_Cargill_logo.png", alt: "Cargill logo" },
   { name: "Exquis", tier: "Jade", logoSrc: "/photos/sponsors/JADE_Exquis_logo.png", alt: "Exquis logo" },
-  { name: "Meralco", tier: "Jade", logoSrc: "/photos/sponsors/JADE_Meralco_logo.png", alt: "Meralco logo" },
+  { name: "American Wire & Cable", tier: "Jade", logoSrc: "/photos/sponsors/JADE_AmericanWireCable_logo.png", alt: "American Wire & Cable logo" },
   { name: "Switch Industrial", tier: "Jade", logoSrc: "/photos/sponsors/JADE_SwitchIndustrial_logo.png", alt: "Switch Industrial logo" },
+  { name: "Westco", tier: "Jade", logoSrc: "/photos/sponsors/JADE_Westco_logo.png", alt: "Westco logo" },
 
   // Ruby
   { name: "PPI", tier: "Ruby", logoSrc: "/photos/sponsors/RUBY_PPI_logo.png", alt: "PPI logo" },
@@ -55,10 +58,10 @@ export const sponsors: Sponsor[] = [
   { name: "Solidtech Metal", tier: "Gold", logoSrc: "/photos/sponsors/GOLD_Solidtech_logo.png", alt: "Solidtech Metal logo" },
   { name: "Watts App", tier: "Gold", logoSrc: "/photos/sponsors/GOLD_WattsApp_logo.png", alt: "Watts App logo" },
   { name: "Weichai", tier: "Gold", logoSrc: "/photos/sponsors/GOLD_Weichai_logo.png", alt: "Weichai logo" },
-  { name: "SPMC Schwer", tier: "Gold", logoSrc: "/photos/sponsors/GOLD_SPMCSchwer_logo.png", alt: "SPMC Schwer logo" },
 
   // Fellowship
   { name: "LM Power", tier: "Fellowship", logoSrc: "/photos/sponsors/FELLOWSHIP_LMPower_logo.png", alt: "LM Power logo" },
+  { name: "SPMC Schwer", tier: "Fellowship", logoSrc: "/photos/sponsors/FELLOWSHIP_SPMCSchwer_logo.png", alt: "SPMC Schwer logo" },
 
   // Lunch
   { name: "EBSI", tier: "Lunch", logoSrc: "/photos/sponsors/LUNCH_EBSI_logo.png", alt: "EBSI logo" },
