@@ -24,6 +24,7 @@ html {
   --color-brand-gold: #f5c518;
 
   --animate-fade-in-up: fade-in-up 0.4s ease-out both;
+  --animate-fade-out-down: fade-out-down 0.3s ease-in both;
   --animate-hero-zoom: hero-zoom 10s ease-out both;
   --animate-chevron-bounce: chevron-bounce 1s ease-in-out infinite alternate;
   --animate-card-zoom: card-zoom 3s ease-out both;
@@ -37,6 +38,17 @@ html {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes fade-out-down {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(6px);
   }
 }
 
@@ -69,6 +81,7 @@ html {
 
 @media (prefers-reduced-motion: reduce) {
   .animate-fade-in-up,
+  .animate-fade-out-down,
   .animate-hero-zoom,
   .animate-chevron-bounce,
   .animate-card-zoom {
