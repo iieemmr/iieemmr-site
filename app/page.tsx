@@ -12,8 +12,8 @@ export default function Home() {
       <HeroRecap />
       <BeforeAfterHighlight />
       <EventDetails />
-      <VideoHighlight />
       <SponsorHighlight />
+      <VideoHighlight />
       <MMRHistoryVideo />
       <PhotoGallery />
     </main>

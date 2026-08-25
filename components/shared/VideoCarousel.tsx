@@ -57,7 +57,10 @@ export default function VideoCarousel({ videos }: VideoCarouselProps) {
       className="flex flex-col gap-4 rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold"
     >
       <div className="relative -mr-6 sm:-mr-10 lg:mr-0">
-        <div className="overflow-hidden" ref={emblaRef}>
+        <div
+          className="overflow-hidden [-webkit-mask-image:linear-gradient(to_left,transparent,black_4rem)] [mask-image:linear-gradient(to_left,transparent,black_4rem)] sm:[-webkit-mask-image:linear-gradient(to_left,transparent,black_6rem)] sm:[mask-image:linear-gradient(to_left,transparent,black_6rem)]"
+          ref={emblaRef}
+        >
           <div className="-ml-4 flex [touch-action:pan-y_pinch-zoom]">
             {videos.map((video, index) => (
               <div className="min-w-0 flex-[0_0_85%] pl-4 sm:flex-[0_0_75%]" key={video.id}>
@@ -72,10 +75,6 @@ export default function VideoCarousel({ videos }: VideoCarouselProps) {
             ))}
           </div>
         </div>
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-navy-950 to-transparent sm:w-24"
-        />
       </div>
 
       <p className="text-sm text-slate-300 sm:text-base">{videos[selectedIndex].caption}</p>
