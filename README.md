@@ -24,7 +24,7 @@ Shared, reusable pieces live in `components/shared/`: `BeforeAfterSlider` (compa
 
 `app/icon.png` and `app/apple-icon.png` are the browser tab icon and iOS home-screen icon (Next.js's file-convention icons — no code wiring needed). The full-resolution source logo lives at `public/brand/iiee-logo.png`, for any future branding use beyond the icons.
 
-`app/opengraph-image.tsx` generates the Open Graph/Twitter share image (1200×630) at build time via `next/og`'s `ImageResponse` — the hero photo with the same navy gradient/brand-color treatment as `HeroRecap`, not a bare screenshot. Next.js wires the resulting `og:image` tag automatically; Twitter/X falls back to it since no separate `twitter-image` is defined.
+`app/opengraph-image.tsx` and `app/twitter-image.tsx` both generate the same share image (1200×630) at build time via `next/og`'s `ImageResponse`, using shared markup/assets from `lib/og-image.tsx` — the hero photo with the same navy gradient/brand-color treatment as `HeroRecap`, not a bare screenshot. Fonts are read from local files in `public/fonts/` (not fetched from Google Fonts at build time) so the image generation has no network dependency — a prior version fetched fonts over the network, which was unreliable for link-preview crawlers like Facebook Messenger's.
 
 ## Typography
 
