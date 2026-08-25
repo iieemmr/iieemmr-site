@@ -1,6 +1,6 @@
-import PhotoLightbox from "@/components/shared/PhotoLightbox";
+import AlbumGrid from "@/components/shared/AlbumGrid";
 import ShareButton from "@/components/shared/ShareButton";
-import { galleryPhotos } from "@/data/gallery";
+import { galleryAlbums } from "@/data/gallery";
 
 export default function PhotoGallery() {
   return (
@@ -15,7 +15,7 @@ export default function PhotoGallery() {
             text="A recap of the 12th IIEE Metro Manila Regional Conference — Brighter 2026."
           />
         </div>
-        <PhotoLightbox photos={galleryPhotos} />
+        <AlbumGrid albums={galleryAlbums} />
       </div>
     </section>
   );
