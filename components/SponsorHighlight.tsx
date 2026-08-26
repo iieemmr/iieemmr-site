@@ -74,7 +74,7 @@ export default function SponsorHighlight() {
         )}
 
         <h2 className="font-heading text-3xl font-bold text-white sm:text-4xl">
-          Our Top Sponsors
+          Meet our Partners
         </h2>
 
         <div className="relative -mr-6 w-[calc(100%+1.5rem)] sm:-mr-10 sm:w-[calc(100%+2.5rem)] lg:mr-0 lg:w-full">

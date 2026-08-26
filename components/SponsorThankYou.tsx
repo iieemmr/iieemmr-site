@@ -99,9 +99,9 @@ export default function SponsorThankYou() {
               className={`opacity-0 font-heading text-3xl font-bold text-white sm:text-4xl md:text-5xl ${heroIsAnimating ? "animate-fade-in-up" : ""}`}
               style={{ animationDelay: "100ms" }}
             >
-              Thank You,{" "}
+              We would like to thank our{" "}
               <span className="bg-gradient-to-r from-brand-blue via-brand-teal to-brand-gold bg-clip-text text-transparent">
-                Sponsors &amp; Partners
+                Partners
               </span>
             </h1>
 
