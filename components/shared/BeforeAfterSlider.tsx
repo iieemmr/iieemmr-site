@@ -20,7 +20,6 @@ export default function BeforeAfterSlider({ pair }: BeforeAfterSliderProps) {
       <div className="relative aspect-video overflow-hidden rounded-lg border border-navy-800 bg-navy-900">
         <ReactCompareSlider
           style={{ height: "100%", width: "100%" }}
-          aria-label="Drag to compare the before and after photos"
           itemOne={
             pair.beforeSrc ? (
               <div className="relative h-full w-full">

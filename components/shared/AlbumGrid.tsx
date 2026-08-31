@@ -111,7 +111,14 @@ export default function AlbumGrid({ albums }: AlbumGridProps) {
       </div>
 
       {openAlbum ? (
-        <PhotoLightbox album={openAlbum} onClose={() => setOpenAlbumIndex(null)} />
+        <PhotoLightbox
+          album={openAlbum}
+          onClose={() => {
+            const closedIndex = openAlbumIndex;
+            setOpenAlbumIndex(null);
+            albumRefs.current[closedIndex ?? -1]?.focus();
+          }}
+        />
       ) : null}
     </>
   );
