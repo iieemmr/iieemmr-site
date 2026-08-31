@@ -21,7 +21,7 @@ const SITE_DESCRIPTION =
   "Relive the 12th IIEE Metro Manila Regional Conference (Brighter 2026): highlights, speakers, sponsors, and photos.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://iieemmr-site.vercel.app"),
+  metadataBase: new URL("https://iieemmr.com"),
   title: SITE_TITLE,
   description: SITE_DESCRIPTION,
   alternates: {
