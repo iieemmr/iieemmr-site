@@ -15,6 +15,7 @@ const FOCUSABLE_SELECTOR =
 
 export default function PhotoLightbox({ album, onClose }: PhotoLightboxProps) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [loadedSrc, setLoadedSrc] = useState<string | null>(null);
   const dialogRef = useRef<HTMLDivElement | null>(null);
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
 
@@ -60,6 +61,14 @@ export default function PhotoLightbox({ album, onClose }: PhotoLightboxProps) {
 
   const activePhoto = album.photos[activeIndex];
   const label = `${album.title} — photo ${activeIndex + 1} of ${album.photos.length}`;
+  const nextPhoto =
+    album.photos.length > 1 ? album.photos[(activeIndex + 1) % album.photos.length] : null;
+  const prevPhoto =
+    album.photos.length > 1
+      ? album.photos[(activeIndex - 1 + album.photos.length) % album.photos.length]
+      : null;
+  const imageSizes = "(min-width: 1024px) 1152px, (min-width: 672px) 672px, 100vw";
+  const isLoading = loadedSrc !== activePhoto.src;
 
   return (
     <div
@@ -85,13 +94,40 @@ export default function PhotoLightbox({ album, onClose }: PhotoLightboxProps) {
         onClick={(event) => event.stopPropagation()}
       >
         <div className="relative h-[55vh] w-full sm:h-[60vh] lg:h-[78vh]">
+          {isLoading ? (
+            <div className="absolute inset-[10%] rounded-lg bg-white/10 motion-safe:animate-pulse" />
+          ) : null}
           <Image
+            key={activePhoto.src}
             src={activePhoto.src}
             alt={label}
             fill
-            sizes="(min-width: 1024px) 1152px, (min-width: 672px) 672px, 100vw"
+            sizes={imageSizes}
             className="object-contain"
+            onLoad={() => setLoadedSrc(activePhoto.src)}
           />
+          {nextPhoto ? (
+            <Image
+              key={`preload-${nextPhoto.src}`}
+              src={nextPhoto.src}
+              alt=""
+              fill
+              sizes={imageSizes}
+              loading="eager"
+              className="hidden"
+            />
+          ) : null}
+          {prevPhoto ? (
+            <Image
+              key={`preload-${prevPhoto.src}`}
+              src={prevPhoto.src}
+              alt=""
+              fill
+              sizes={imageSizes}
+              loading="eager"
+              className="hidden"
+            />
+          ) : null}
         </div>
         <p className="text-center text-sm font-medium text-white sm:text-base">{label}</p>
         <PhotoThumbnailStrip
