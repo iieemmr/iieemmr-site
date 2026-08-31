@@ -66,6 +66,14 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) to view the site. Edit `app/page.tsx` or any component under `components/` — the page hot-reloads.
 
+## Infrastructure overview
+
+This project spans three separate accounts/services, each owned differently — worth knowing before making changes to any of them:
+
+- **GitHub**: this repo lives under the client's `iieemmr` org (github.com/iieemmr/iieemmr-site), not a personal account — the client owns the source code outright.
+- **Vercel**: hosting lives under the developer's personal Hobby account (`paulfuentesss-dev`), not the client's. The client was offered a paid Team + free Viewer-seat setup for their own dashboard visibility but chose to stay on free Hobby for now — see `AGENTS.md`'s "Production cutover" section for the full cost tradeoff if that's revisited later.
+- **Domain (`iieemmr.com`)**: registered and DNS-managed at Wix, under the client's Wix account — repointed via A/CNAME records to Vercel at cutover. Wix's own website-hosting plan is no longer used for the live site (it's set to lapse on its own, see `AGENTS.md`).
+
 ## Deployment
 
 Linked to Vercel as `paulfuentesss-dev/iieemmr-site`. Deploy a preview with:
