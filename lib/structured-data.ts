@@ -5,6 +5,8 @@ export const eventJsonLd = {
   startDate: "2026-07-01",
   endDate: "2026-07-04",
   eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+  image: "https://iieemmr.com/opengraph-image",
+  url: "https://iieemmr.com",
   location: {
     "@type": "Place",
     name: "MERALCO",
