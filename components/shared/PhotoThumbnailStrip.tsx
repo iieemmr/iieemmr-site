@@ -37,11 +37,20 @@ export default function PhotoThumbnailStrip({
                 aria-label={`Go to photo ${index + 1}`}
                 aria-current={isSelected}
                 onClick={() => onSelect(index)}
-                className={`relative h-16 w-16 shrink-0 overflow-hidden rounded-md transition focus:outline-none ${
-                  isSelected ? "ring-2 ring-brand-gold" : "opacity-70 hover:opacity-100"
+                onFocus={() => onSelect(index)}
+                className={`relative h-16 w-16 shrink-0 rounded-md transition focus:outline-none ${
+                  isSelected ? "" : "opacity-70 hover:opacity-100"
                 }`}
               >
-                <Image src={photo.src} alt="" fill sizes="64px" className="object-cover" />
+                <div className="absolute inset-0 overflow-hidden rounded-md">
+                  <Image src={photo.src} alt="" fill sizes="64px" className="object-cover" />
+                </div>
+                <span
+                  aria-hidden="true"
+                  className={`pointer-events-none absolute inset-0 rounded-md ring-2 ring-inset transition ${
+                    isSelected ? "ring-brand-gold" : "ring-transparent"
+                  }`}
+                />
               </button>
             );
           })}
