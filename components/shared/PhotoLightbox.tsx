@@ -81,15 +81,15 @@ export default function PhotoLightbox({ album, onClose }: PhotoLightboxProps) {
       </button>
 
       <div
-        className="flex max-h-full w-full max-w-2xl flex-col items-center gap-4"
+        className="flex max-h-full w-full max-w-2xl flex-col items-center gap-4 lg:max-w-6xl"
         onClick={(event) => event.stopPropagation()}
       >
-        <div className="relative aspect-square w-full">
+        <div className="relative h-[55vh] w-full sm:h-[60vh] lg:h-[78vh]">
           <Image
             src={activePhoto.src}
             alt={label}
             fill
-            sizes="(min-width: 672px) 672px, 100vw"
+            sizes="(min-width: 1024px) 1152px, (min-width: 672px) 672px, 100vw"
             className="object-contain"
           />
         </div>
