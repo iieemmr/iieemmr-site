@@ -2,7 +2,7 @@
 
 A post-conference recap page for the **12th IIEE Metro Manila Regional Conference** (Brighter 2026), built for the Institute of Integrated Electrical Engineers of the Philippines, Metro Manila Region. Thanks delegates, chapters, and partners, and recaps the event's speakers, sponsors, and highlights.
 
-Live at [iieemmr-site.vercel.app](https://iieemmr-site.vercel.app). Built with Next.js (App Router), TypeScript, and Tailwind CSS.
+Live at [iieemmr.com](https://iieemmr.com). Built with Next.js (App Router), TypeScript, and Tailwind CSS.
 
 ## Sections
 
