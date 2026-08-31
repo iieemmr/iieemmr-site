@@ -1,12 +1,17 @@
 "use client";
 
+import { useInView } from "@/components/shared/useInView";
+
 type VideoMediaProps = {
   videoUrl: string | null;
   title: string;
   isActive?: boolean;
+  // When provided, overrides this component's own in-view detection — lets a
+  // parent (e.g. a carousel) gate all its slides on one shared visibility check.
+  shouldLoad?: boolean;
 };
 
-function getYouTubeEmbedUrl(url: string): string | null {
+function getYouTubeVideoId(url: string): string | null {
   const patterns = [
     /youtube\.com\/watch\?v=([\w-]+)/,
     /youtu\.be\/([\w-]+)/,
@@ -14,40 +19,57 @@ function getYouTubeEmbedUrl(url: string): string | null {
   ];
   for (const pattern of patterns) {
     const match = url.match(pattern);
-    if (match) return `https://www.youtube.com/embed/${match[1]}`;
+    if (match) return match[1];
   }
   return null;
 }
 
-export default function VideoMedia({ videoUrl, title, isActive = false }: VideoMediaProps) {
-  const youTubeEmbedUrl = videoUrl ? getYouTubeEmbedUrl(videoUrl) : null;
+export default function VideoMedia({ videoUrl, title, isActive = false, shouldLoad }: VideoMediaProps) {
+  const { ref, isInView: ownIsInView } = useInView<HTMLDivElement>();
+  const isInView = shouldLoad ?? ownIsInView;
+  const youTubeVideoId = videoUrl ? getYouTubeVideoId(videoUrl) : null;
 
-  if (youTubeEmbedUrl) {
-    const src = `${youTubeEmbedUrl}?mute=1&playsinline=1${isActive ? "&autoplay=1" : ""}`;
+  if (youTubeVideoId) {
+    const src = `https://www.youtube.com/embed/${youTubeVideoId}?mute=1&playsinline=1${isActive ? "&autoplay=1" : ""}`;
     return (
-      <iframe
-        src={src}
-        title={title}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-        className="absolute inset-0 h-full w-full"
-      />
+      <div ref={ref} className="absolute inset-0 h-full w-full">
+        {isInView ? (
+          <iframe
+            src={src}
+            title={title}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="h-full w-full"
+          />
+        ) : (
+          // eslint-disable-next-line @next/next/no-img-element -- external YouTube thumbnail, not an optimizable local/remote asset
+          <img
+            src={`https://img.youtube.com/vi/${youTubeVideoId}/hqdefault.jpg`}
+            alt={title}
+            className="h-full w-full object-cover"
+          />
+        )}
+      </div>
     );
   }
 
   if (videoUrl) {
     return (
-      <video
-        controls
-        muted
-        loop
-        playsInline
-        preload={isActive ? "auto" : "metadata"}
-        className="absolute inset-0 h-full w-full object-cover"
-        src={videoUrl}
-      >
-        <track kind="captions" />
-      </video>
+      <div ref={ref} className="absolute inset-0 h-full w-full">
+        {isInView && (
+          <video
+            controls
+            muted
+            loop
+            playsInline
+            preload={isActive ? "auto" : "metadata"}
+            className="h-full w-full object-cover"
+            src={videoUrl}
+          >
+            <track kind="captions" />
+          </video>
+        )}
+      </div>
     );
   }
 

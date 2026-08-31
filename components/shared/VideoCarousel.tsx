@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import VideoEmbed from "@/components/shared/VideoEmbed";
 import VideoMedia from "@/components/shared/VideoMedia";
+import { useInView } from "@/components/shared/useInView";
 import type { VideoEntry } from "@/data/videos";
 
 type VideoCarouselProps = {
@@ -11,6 +12,10 @@ type VideoCarouselProps = {
 };
 
 export default function VideoCarousel({ videos }: VideoCarouselProps) {
+  // One shared in-view check for the whole carousel, so all slides (including
+  // the peek slides already visible on either side) load together instead of
+  // each slide needing to individually cross the viewport threshold.
+  const { ref: viewRef, isInView } = useInView<HTMLDivElement>();
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, dragFree: true });
   const [selectedIndex, setSelectedIndex] = useState(0);
 
@@ -49,6 +54,7 @@ export default function VideoCarousel({ videos }: VideoCarouselProps) {
 
   return (
     <div
+      ref={viewRef}
       role="group"
       aria-roledescription="carousel"
       aria-label="Video highlights"
@@ -69,6 +75,7 @@ export default function VideoCarousel({ videos }: VideoCarouselProps) {
                     videoUrl={video.videoUrl}
                     title={video.title}
                     isActive={index === selectedIndex}
+                    shouldLoad={isInView}
                   />
                 </div>
               </div>

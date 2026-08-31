@@ -199,9 +199,13 @@ export type Host = {
 };
 
 export const hosts: Host[] = [
-  { name: "Mr. Arkel Mendoza", role: "GMA Host", photoSrc: null },
-  { name: "Engr. Paula Badong-Florendo", role: "MSC", photoSrc: null },
-  { name: "Engr. Emman Allada", role: "MCC", photoSrc: null },
+  { name: "Mr. Arkel Mendoza", role: "GMA Host", photoSrc: "/photos/hosts/arkel-mendoza.jpg" },
+  {
+    name: "Engr. Paula Badong-Florendo",
+    role: "MSC",
+    photoSrc: "/photos/hosts/paula-badong-florendo.jpg",
+  },
+  { name: "Engr. Emman Allada", role: "MCC", photoSrc: "/photos/hosts/emman-allada.jpg" },
 ];
 
 export type GlanceStatIcon = "mic" | "storefront" | "certificate";
