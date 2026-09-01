@@ -5,6 +5,8 @@ export const eventJsonLd = {
   startDate: "2026-07-01",
   endDate: "2026-07-04",
   eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+  description:
+    "Relive the 12th IIEE Metro Manila Regional Conference (Brighter 2026): highlights, speakers, sponsors, and photos.",
   image: "https://iieemmr.com/opengraph-image",
   url: "https://iieemmr.com",
   location: {
@@ -20,5 +22,6 @@ export const eventJsonLd = {
   organizer: {
     "@type": "Organization",
     name: "IIEE Metro Manila Region",
+    url: "https://iieemmr.com",
   },
 };
